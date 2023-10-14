@@ -6,6 +6,9 @@ export class Player {
         this.x = 100;
         this.y = this.game.height - this.height;
         this.image = player; // Player ID
+        this.speed = 0;
+        this.maxSpeed = 5;
+
         // this.image = document.getElementById('playerImage');
         // this.frameX = 0;
         // this.frameY = 0;
@@ -13,13 +16,20 @@ export class Player {
         // this.fps = 20;
         // this.frameTimer = 0;
         // this.frameInterval = 1000 / this.fps;
-        // this.speed = 0;
+        // 
         // this.vy = 0;
         // this.gravity = 1;
         // this.jumping = false;
     }
-    update() {
-        this.x++
+    update(input) {
+        // Horizontal movements
+        this.x += this.speed;
+
+        if (input.includes('ArrowRight')) this.speed = this.maxSpeed;
+        else if (input.includes('ArrowLeft')) this.speed = -this.maxSpeed;
+        else this.speed = 0;
+        if (this.x < 0) this.x = 0;
+        if (this.x > this.game.width - this.width) this.x = this.game.width - this.width;
     }
     draw(ctx) {
         // ctx.drawImage(this.image, sx, sy, sw, sh, this.x, this.y, this.width, this.height);

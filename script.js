@@ -8,8 +8,8 @@ import {
 window.addEventListener('load', function () {
     const canvas = document.getElementById("canvas1");
     const ctx = canvas.getContext('2d');
-    canvas.width = 900;
-    canvas.height = 500;
+    canvas.width = 1600;
+    canvas.height = 710;
     // let enemies = [];
     // let score = 0;
     // let gameOver = false;
@@ -38,7 +38,7 @@ window.addEventListener('load', function () {
             this.InputHandler = new InputHandler();
         }
         update() {
-            this.player.update();
+            this.player.update(this.InputHandler.keys);
         }
         draw(ctx) {
             this.player.draw(ctx);
