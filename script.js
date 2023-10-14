@@ -1,3 +1,6 @@
+// Video 1 setup and player.....https://www.youtube.com/watch?v=c-1dBd1_G8A&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=12
+// Video 2 state control .....https://www.youtube.com/watch?v=ug-gdfGb7I8&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=13
+
 import {
     Player
 } from './player.js '

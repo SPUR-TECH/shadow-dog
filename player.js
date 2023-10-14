@@ -5,6 +5,8 @@ export class Player {
         this.height = 91.3;
         this.x = 100;
         this.y = this.game.height - this.height;
+        this.vy = 0;
+        this.gravity = 1;
         this.image = player; // Player ID
         this.speed = 0;
         this.maxSpeed = 5;
@@ -30,9 +32,18 @@ export class Player {
         else this.speed = 0;
         if (this.x < 0) this.x = 0;
         if (this.x > this.game.width - this.width) this.x = this.game.width - this.width;
+
+        //  Vertical movements
+        if (input.includes('ArrowUp') && this.onGround()) this.vy -= 30;
+        this.y += this.vy;
+        if (!this.onGround()) this.vy += this.gravity;
+        else this.vy = 0;
     }
     draw(ctx) {
         // ctx.drawImage(this.image, sx, sy, sw, sh, this.x, this.y, this.width, this.height);
         ctx.drawImage(this.image, 0, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+    }
+    onGround() {
+        return this.y >= this.game.height - this.height;
     }
 }
