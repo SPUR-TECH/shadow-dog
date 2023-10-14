@@ -23,12 +23,7 @@ body {
     font-family: 'Creepster', cursive;
 }
 
-#backgroundImage,
-#worm,
-#ghost,
-#spider,
-#player,
-#boom {
+img {
     display: none;
 }
 
