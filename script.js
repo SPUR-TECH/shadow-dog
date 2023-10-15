@@ -37,9 +37,9 @@ window.addEventListener('load', function () {
     // fullscreen.addEventListener('click', toggleFullscreen);
 
     class Game {
-        constructor(width, height) {
-            this.width = width;
-            this.height = height;
+        constructor(gameWidth, gameHeight) {
+            this.width = gameWidth;
+            this.height = gameHeight;
             this.groundMargin = 50;
             this.speed = 3;
             // this.Background = new Background(this);
