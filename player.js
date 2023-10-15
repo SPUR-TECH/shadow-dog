@@ -46,8 +46,6 @@ export class Player {
         if (!this.onGround()) this.vy += this.weight;
         else this.vy = 0;
 
-        //  Rolling
-
 
         // Sprite animation
         if (this.frameTimer > this.frameInterval) {
