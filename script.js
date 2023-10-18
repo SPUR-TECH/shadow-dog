@@ -7,6 +7,9 @@ import {
 import {
     InputHandler
 } from './inputHandler.js'
+import {
+    Sitting
+} from './playerStates.js';
 
 window.addEventListener('load', function () {
     const canvas = document.getElementById("canvas1");
@@ -136,6 +139,12 @@ window.addEventListener('load', function () {
         const deltaTime = timeStamp - lastTime;
         lastTime = timeStamp
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (game.player.currentState instanceof Sitting) {
+            gameSpeed = 0; // Set gameSpeed to 0 when the player is sitting
+        } else {
+            gameSpeed = 3; // Set the game speed back to its original value in other states
+        }
 
         layerObjects.forEach(object => {
             object.update();
