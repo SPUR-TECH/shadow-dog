@@ -4,7 +4,7 @@ import {
     Jumping,
     Falling,
     Rolling
-} from './playerStates.js '
+} from './playerStates.js';
 
 export class Player {
     constructor(game) {
@@ -28,7 +28,6 @@ export class Player {
         this.currentState = this.states[0];
 
         if (this.currentState instanceof Sitting) {
-            // If the initial state is Sitting, set gameSpeed to 0
             this.gameSpeed = 0;
         }
 
@@ -36,7 +35,7 @@ export class Player {
     }
     update(input, deltaTime) {
         this.currentState.handleInput(input);
-        // Horizontal movements
+
         this.x += this.speed;
 
         if (input.includes('ArrowRight')) this.speed = this.maxSpeed;
@@ -45,13 +44,10 @@ export class Player {
         if (this.x < 0) this.x = 0;
         if (this.x > this.game.width - this.width) this.x = this.game.width - this.width;
 
-        //  Vertical movements
         this.y += this.vy;
         if (!this.onGround()) this.vy += this.weight;
         else this.vy = 0;
 
-
-        // Sprite animation
         if (this.frameTimer > this.frameInterval) {
             this.frameTimer = 0;
             if (this.frameX < this.maxFrame) this.frameX++;
@@ -59,10 +55,8 @@ export class Player {
         } else {
             this.frameTimer += deltaTime;
         }
-
     }
     draw(ctx) {
-        // ctx.drawImage(this.image, sx, sy, sw, sh, this.x, this.y, this.width, this.height);
         ctx.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
     }
     onGround() {

@@ -8,14 +8,13 @@ const states = {
     HIT: 6,
     DEAD: 7,
     DIVE: 8,
-}
+};
 
 class State {
     constructor(state) {
         this.state = state;
     }
 }
-
 export class Sitting extends State {
     constructor(player) {
         super('SITTING');
@@ -47,7 +46,7 @@ export class Running extends State {
         this.player.frameX = 0;
         this.player.maxFrame = 6;
         this.player.frameY = 3;
-        this.player.isSitting = false;
+        this.player.isSitting = true;
     }
     handleInput(input) {
         if (input.includes('ArrowDown')) {
