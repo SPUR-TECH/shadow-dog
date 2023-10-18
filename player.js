@@ -15,7 +15,7 @@ export class Player {
         this.y = this.game.height - this.height - this.game.groundMargin;
         this.vy = 0;
         this.weight = 1;
-        this.image = document.getElementById('player')
+        this.image = document.getElementById('player');
         this.frameX = 0;
         this.frameY = 0;
         this.maxFrame = 0;
@@ -26,10 +26,13 @@ export class Player {
         this.maxSpeed = 5;
         this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this), new Rolling(this)];
         this.currentState = this.states[0];
-        this.currentState.enter();
-        this.isSitting = false;
 
-        // this.jumping = false;
+        if (this.currentState instanceof Sitting) {
+            // If the initial state is Sitting, set gameSpeed to 0
+            this.gameSpeed = 0;
+        }
+
+        this.currentState.enter();
     }
     update(input, deltaTime) {
         this.currentState.handleInput(input);
