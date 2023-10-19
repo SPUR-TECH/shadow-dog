@@ -9,8 +9,8 @@ import {
 export class Player {
     constructor(game) {
         this.game = game;
-        this.width = 100;
-        this.height = 91.3;
+        this.width = 166.66;
+        this.height = 152.1;
         this.x = 100;
         this.y = this.game.height - this.height - this.game.groundMargin;
         this.vy = 0;
