@@ -14,8 +14,8 @@ import {
 window.addEventListener('load', function () {
     const canvas = document.getElementById("canvas1");
     const ctx = canvas.getContext('2d');
-    canvas.width = 1600;
-    canvas.height = 710;
+    canvas.width = 1480;
+    canvas.height = 670;
 
     let gameSpeed = 3;
 
