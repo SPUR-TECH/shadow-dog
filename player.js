@@ -23,7 +23,7 @@ export class Player {
         this.frameTimer = 0;
         this.frameInterval = 1000 / this.fps;
         this.speed = 0;
-        this.maxSpeed = 5;
+        this.maxSpeed = 7;
         this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this), new Rolling(this)];
         this.currentState = this.states[0];
 
@@ -38,9 +38,13 @@ export class Player {
 
         this.x += this.speed;
 
-        if (input.includes('ArrowRight')) this.speed = this.maxSpeed;
-        else if (input.includes('ArrowLeft')) this.speed = -this.maxSpeed;
-        else this.speed = 0;
+        if (input.includes('ArrowRight') || input.includes('swipe right')) {
+            this.speed = this.maxSpeed;
+        } else if (input.includes('ArrowLeft') || input.includes('swipe left')) {
+            this.speed = -this.maxSpeed;
+        } else {
+            this.speed = 0;
+        }
         if (this.x < 0) this.x = 0;
         if (this.x > this.game.width - this.width) this.x = this.game.width - this.width;
 

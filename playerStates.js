@@ -27,9 +27,9 @@ export class Sitting extends State {
         this.player.isSitting = true;
     }
     handleInput(input) {
-        if (input.includes('ArrowLeft') || input.includes('ArrowRight')) {
+        if (input.includes('ArrowLeft') || input.includes('swipe left') || input.includes('swipe right') || input.includes('ArrowRight')) {
             this.player.setState(states.RUNNING);
-        } else if (input.includes('ArrowUp')) {
+        } else if (input.includes('ArrowUp')|| input.includes('swipe up')) {
             this.player.setState(states.JUMPING);
         } else if (input.includes('Enter')) {
             this.player.setState(states.ROLLING);
@@ -49,9 +49,9 @@ export class Running extends State {
         this.player.isSitting = true;
     }
     handleInput(input) {
-        if (input.includes('ArrowDown')) {
+        if (input.includes('ArrowDown') || input.includes('swipe down')) {
             this.player.setState(states.SITTING);
-        } else if (input.includes('ArrowUp')) {
+        } else if (input.includes('ArrowUp') || input.includes('swipe up')) {
             this.player.setState(states.JUMPING);
         } else if (input.includes('Enter')) {
             this.player.setState(states.ROLLING);

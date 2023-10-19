@@ -1,14 +1,11 @@
-import {
-    Player
-} from './player.js';
+import { Player } from './player.js';
 
 export class InputHandler {
     constructor() {
         this.keys = [];
-        this.touchStartY = 0;
-        this.touchEndY = 0;
+        this.touchY = 0;
+        this.touchX = 0;
         this.swipeThreshold = 50;
-        this.canJump = true;
 
         window.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Enter') {
@@ -25,23 +22,38 @@ export class InputHandler {
         });
 
         window.addEventListener('touchstart', (e) => {
-            this.touchStartY = e.changedTouches[0].clientY;
+            this.touchY = e.changedTouches[0].pageY;
+            this.touchX = e.changedTouches[0].pageX;
+        });
+
+        window.addEventListener('touchmove', (e) => {
+           const swipeYDistance = e.changedTouches[0].pageY - this.touchY;
+           const swipeXDistance = e.changedTouches[0].pageX - this.touchX;
+
+           if (swipeYDistance < -this.swipeThreshold && this.keys.indexOf('swipe up') === -1) {
+               this.keys.push('swipe up');
+           } else if (swipeYDistance > this.swipeThreshold && this.keys.indexOf('swipe down') === -1) {
+               this.keys.push('swipe down');
+           }
+           if (swipeXDistance < -this.swipeThreshold && this.keys.indexOf('swipe left') === -1) {
+            this.keys.push('swipe left');
+        } else if (swipeXDistance > this.swipeThreshold && this.keys.indexOf('swipe right') === -1) {
+            this.keys.push('swipe right');
+        }
         });
 
         window.addEventListener('touchend', (e) => {
-            this.touchEndY = e.changedTouches[0].clientY;
-            const swipeDistance = this.touchStartY - this.touchEndY;
-
-            if (swipeDistance > this.swipeThreshold && this.canJump) {
-                this.keys.push('ArrowUp');
-                this.canJump = false;
-                setTimeout(() => {
-                    this.keys = this.keys.filter((key) => key !== 'ArrowUp');
-                    this.canJump = true;
-                }, 100);
-            } else if (swipeDistance < -this.swipeThreshold) {
-                this.keys.push('ArrowDown');
-            }
+            this.keys.splice(this.keys.indexOf('swipe up'), 1);
+            this.keys.splice(this.keys.indexOf('swipe down'), 1);
+            this.keys.splice(this.keys.indexOf('swipe left'), 1);
+            this.keys.splice(this.keys.indexOf('swipe right'), 1);
+           
         });
     }
 }
+
+
+
+
+
+
