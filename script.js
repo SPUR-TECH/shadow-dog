@@ -1,15 +1,21 @@
-// Video 1 setup and player.....https://www.youtube.com/watch?v=c-1dBd1_G8A&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=12
-// Video 2 state control .....https://www.youtube.com/watch?v=ug-gdfGb7I8&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=13
+// Video 1 setup and player..... https://www.youtube.com/watch?v=c-1dBd1_G8A&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=12
+// Video 2 state control..... https://www.youtube.com/watch?v=ug-gdfGb7I8&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=13
+// Video 3 Enemies..... https://www.youtube.com/watch?v=lqNztI7BMf8&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=15
 
 import {
     Player
-} from './player.js '
+} from './player.js';
 import {
     InputHandler
-} from './inputHandler.js'
+} from './inputHandler.js';
 import {
     Sitting
 } from './playerStates.js';
+import {
+    FlyingEnemy,
+    ClimbingEnemy,
+    GroundEnemy
+} from './enemies.js';
 
 window.addEventListener('load', function () {
     const canvas = document.getElementById("canvas1");
@@ -46,12 +52,33 @@ window.addEventListener('load', function () {
             this.groundMargin = 50;
             this.player = new Player(this);
             this.InputHandler = new InputHandler();
+            this.enemies = [];
+            this.enemyTimer = 0;
+            this.enemyInterval = 1000;
         }
         update(deltaTime) {
             this.player.update(this.InputHandler.keys, deltaTime);
+            // Handle enemies
+            if (this.enemyTimer > this.enemyInterval) {
+                this.addEnemy();
+                this.enemyTimer = 0;
+            } else {
+                this.enemyTimer += deltaTime
+            }
+            this.enemies.forEach(enemy => {
+                enemy.update(deltaTime);
+                if (enemy.markedForDeletion) this.enemies.splice(this.enemies.indexOf(enemy), 1);
+            });
         }
-        draw(ctx) {
-            this.player.draw(ctx);
+        draw(context) {
+            this.player.draw(context);
+            this.enemies.forEach(enemy => {
+                enemy.draw(context);
+            });
+        }
+        addEnemy() {
+            this.enemies.push(new FlyingEnemy(this));
+            console.log(this.enemies)
         }
     }
 
