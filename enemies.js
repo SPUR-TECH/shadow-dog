@@ -34,7 +34,7 @@ export class FlyingEnemy extends Enemy {
         this.height = 47;
         this.x = this.game.width + Math.random() * this.game.width * 0.5;
         this.y = Math.random() * this.game.height * 0.5;
-        this.speedX = Math.random() + 2;
+        this.speedX = Math.random() + 4;
         this.speedY = 0;
         this.maxFrame = 5;
         this.image = document.getElementById('bat-3')
@@ -49,7 +49,18 @@ export class FlyingEnemy extends Enemy {
 }
 
 export class GroundEnemy extends Enemy {
-
+    constructor(game) {
+        super();
+        this.game = game;
+        this.width = 125;
+        this.height = 176;
+        this.x = this.game.width
+        this.y = this.game.height - this.height - this.game.groundMargin;
+        this.speedX = this.game.speed;
+        this.speedY = 0
+        this.maxFrame = 7;
+        this.image = document.getElementById('zombie')
+    }
 }
 
 export class ClimbingEnemy extends Enemy {

@@ -23,7 +23,7 @@ window.addEventListener('load', function () {
     canvas.width = 1600;
     canvas.height = 710;
 
-    let gameSpeed = 3;
+    let gameSpeed = 2;
 
     // let enemies = [];
     // let score = 0;
@@ -44,7 +44,6 @@ window.addEventListener('load', function () {
     //     }
     // }
     // fullscreen.addEventListener('click', toggleFullscreen);
-
     class Game {
         constructor(width, height) {
             this.width = width;
@@ -54,7 +53,7 @@ window.addEventListener('load', function () {
             this.InputHandler = new InputHandler();
             this.enemies = [];
             this.enemyTimer = 0;
-            this.enemyInterval = 1000;
+            this.enemyInterval = 1500;
             this.speed = gameSpeed;
         }
         update(deltaTime) {
@@ -78,6 +77,7 @@ window.addEventListener('load', function () {
             });
         }
         addEnemy() {
+            if (this.speed > 0 && Math.random() < 0.3) this.enemies.push(new GroundEnemy(this));
             this.enemies.push(new FlyingEnemy(this));
             console.log(this.enemies)
         }
@@ -171,7 +171,7 @@ window.addEventListener('load', function () {
         if (game.player.currentState instanceof Sitting) {
             gameSpeed = 0; // Set gameSpeed to 0 when the player is sitting
         } else {
-            gameSpeed = 3; // Set the game speed back to its original value in other states
+            gameSpeed = 2; // Set the game speed back to its original value in other states
         }
 
         layerObjects.forEach(object => {
