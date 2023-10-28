@@ -27,7 +27,7 @@ window.addEventListener('load', function () {
     canvas.width = 1600;
     canvas.height = 710;
 
-    let gameSpeed = 1;
+    let gameSpeed = 2;
 
     // let enemies = [];
     // let score = 0;
@@ -57,12 +57,15 @@ window.addEventListener('load', function () {
             this.InputHandler = new InputHandler(this);
             this.UI = new UI(this);
             this.enemies = [];
+            this.particles = [];
             this.enemyTimer = 0;
             this.enemyInterval = 1500;
             this.speed = gameSpeed;
             this.debug = false;
             this.score = 0;
             this.fontColor = 'yellow'
+            this.player.currentState = this.player.states[0];
+            this.player.currentState.enter();
         }
         update(deltaTime) {
             this.player.update(this.InputHandler.keys, deltaTime);
@@ -77,11 +80,21 @@ window.addEventListener('load', function () {
                 enemy.update(deltaTime);
                 if (enemy.markedForDeletion) this.enemies.splice(this.enemies.indexOf(enemy), 1);
             });
+
+            // Handle particles
+            this.particles.forEach((particles, index) => {
+                particles.update();
+                if (particles.markedForDeletion) this.particles.splice(index, 1);
+            });
+            console.log(this.particles)
         }
         draw(context) {
             this.player.draw(context);
             this.enemies.forEach(enemy => {
                 enemy.draw(context);
+            });
+            this.particles.forEach(particle => {
+                particle.draw(context);
             });
             this.UI.draw(context);
         }
@@ -180,7 +193,7 @@ window.addEventListener('load', function () {
         if (game.player.currentState instanceof Sitting) {
             gameSpeed = 0; // Set gameSpeed to 0 when the player is sitting
         } else {
-            gameSpeed = 1; // Set the game speed back to its original value in other states
+            gameSpeed = 2; // Set the game speed back to its original value in other states
         }
 
         layerObjects.forEach(object => {

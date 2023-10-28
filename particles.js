@@ -12,18 +12,18 @@ class Particle {
 }
 
 export class Dust extends Particle {
-    constructor(game) {
-        this.super(game);
+    constructor(game, x, y) {
+        super(game);
         this.size = Math.random() * 10 + 10;
         this.x = x;
         this.y = y;
         this.speedX = Math.random();
         this.speedY = Math.random();
-        this.color = 'black'
+        this.color = 'rgba(0,0,0,0.2)'
     }
     draw(context) {
         context.beginPath();
-        context.arch(this.x, this.y, this.size, 0, Math.PI * 2);
+        context.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         context.fillStyle = this.color;
         context.fill();
     }

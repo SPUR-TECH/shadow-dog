@@ -27,14 +27,7 @@ export class Player {
         this.frameInterval = 1000 / this.fps;
         this.speed = 0;
         this.maxSpeed = 5;
-        this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this), new Rolling(this)]; //, new Dive(this), new Hit(this), new Dead(this)
-        this.currentState = this.states[0];
-
-        if (this.currentState instanceof Sitting) {
-            this.gameSpeed = 0;
-        }
-
-        this.currentState.enter();
+        this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game)]; //, new Dive(this.game), new Hit(this.game), new Dead(this.game)
     }
     update(input, deltaTime) {
         this.checkCollisions();
