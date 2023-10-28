@@ -1,5 +1,6 @@
 import {
-    Dust
+    Dust,
+    Fire
 } from './particles.js'
 
 const states = {
@@ -52,7 +53,7 @@ export class Running extends State {
         this.game.player.isSitting = true;
     }
     handleInput(input) {
-        this.game.particles.push(new Dust(this.game, this.game.player.x + this.game.player.width * 0.5 + 15, this.game.player.y + this.game.player.height));
+        this.game.particles.push(new Dust(this.game, this.game.player.x + this.game.player.width * 0.5 + 20, this.game.player.y + this.game.player.height));
         if (input.includes('ArrowDown') || input.includes('swipe down')) {
             this.game.player.setState(states.SITTING);
         } else if (input.includes('ArrowUp') || input.includes('swipe up')) {
@@ -115,6 +116,7 @@ export class Rolling extends State {
         this.game.player.isSitting = false;
     }
     handleInput(input) {
+        this.game.particles.unshift(new Fire(this.game, this.game.player.x + this.game.player.width * 0.5, this.game.player.y + this.game.player.height * 0.5));
         if (!input.includes('Enter', 'swipe up', 'swipe down') && this.game.player.onGround) {
             this.game.player.setState(states.RUNNING);
         } else if (!input.includes('Enter', 'swipe up', 'swipe down') && !this.game.player.onGround) {
