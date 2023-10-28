@@ -52,7 +52,7 @@ export class InputHandler {
             this.keys.splice(this.keys.indexOf('swipe down'), 1);
             this.keys.splice(this.keys.indexOf('swipe left'), 1);
             this.keys.splice(this.keys.indexOf('swipe right'), 1);
-
+            this.keys.splice(this.keys.indexOf('Enter'), 1);
         });
 
         window.addEventListener('touchcancel', (e) => {
@@ -60,7 +60,7 @@ export class InputHandler {
             this.keys.splice(this.keys.indexOf('swipe down'), 1);
             this.keys.splice(this.keys.indexOf('swipe left'), 1);
             this.keys.splice(this.keys.indexOf('swipe right'), 1);
-
+            this.keys.splice(this.keys.indexOf('Enter'), 1);
         });
     }
 }
