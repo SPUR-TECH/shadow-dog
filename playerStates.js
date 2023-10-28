@@ -4,10 +4,10 @@ const states = {
     JUMPING: 2,
     FALLING: 3,
     ROLLING: 4,
-    BITE: 5,
+    DIVE: 5,
     HIT: 6,
     DEAD: 7,
-    DIVE: 8,
+
 };
 
 class State {
@@ -95,9 +95,9 @@ export class Falling extends State {
     }
     handleInput(input) {
         if (this.player.onGround()) {
-            this.player.setState(states.RUNNING);
+            this.player.setState(states.RUNNING, 1);
         } else if (input.includes('Enter')) {
-            this.player.setState(states.ROLLING);
+            this.player.setState(states.ROLLING, 2);
         }
     }
 }
@@ -114,14 +114,38 @@ export class Rolling extends State {
         this.player.isSitting = false;
     }
     handleInput(input) {
-        if (input.includes('Enter')) {
-            this.player.setState(states.ROLLING);
-        } else if (input.includes('ArrowUp') || input.includes('swipe up')) {
-            this.player.setState(states.JUMPING);
-        } else if (input.includes('ArrowDown') || input.includes('swipe down')) {
-            this.player.setState(states.SITTING);
-        } else if (input.includes('ArrowLeft') || input.includes('ArrowRight') || input.includes('swipe left') || input.includes('swipe right') && this.player.onGround()) {
+        if (!input.includes('Enter', 'swipe up', 'swipe down') && this.player.onGround) {
             this.player.setState(states.RUNNING);
+        } else if (!input.includes('Enter', 'swipe up', 'swipe down') && !this.player.onGround) {
+            this.player.setState(states.FALLING);
+        } else if (input.includes('Enter') && input.includes('ArrowUp') && this.player.onGround()) {
+            this.player.vy -= 32;
+        } else if (input.includes('Enter') && input.includes('swipe up') && this.player.onGround()) {
+            this.player.vy -= 32;
         }
     }
 }
+
+// export class Dive extends State {
+//     constructor(player) {
+//         super('DIVE');
+//         this.player = player;
+//     }
+//     enter() {
+//         this.player.frameX = 0;
+//         this.player.maxFrame = 6;
+//         this.player.frameY = 6;
+//         this.player.isSitting = false;
+//     }
+//     handleInput(input) {
+//         if (input.includes('Enter')) {
+//             this.player.setState(states.ROLLING);
+//         } else if (input.includes('ArrowUp') || input.includes('swipe up')) {
+//             this.player.setState(states.JUMPING);
+//         } else if (input.includes('ArrowDown') || input.includes('swipe down')) {
+//             this.player.setState(states.SITTING);
+//         } else if (input.includes('ArrowLeft') || input.includes('ArrowRight') || input.includes('swipe left') || input.includes('swipe right') && this.player.onGround()) {
+//             this.player.setState(states.RUNNING);
+//         }
+//     }
+// }

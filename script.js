@@ -60,7 +60,7 @@ window.addEventListener('load', function () {
             this.enemyTimer = 0;
             this.enemyInterval = 1500;
             this.speed = gameSpeed;
-            this.debug = false;
+            this.debug = true;
             this.score = 0;
             this.fontColor = 'yellow'
         }
@@ -89,7 +89,6 @@ window.addEventListener('load', function () {
             if (gameSpeed > 0 && Math.random() < 0.3) this.enemies.push(new GroundEnemy(this));
             else if (gameSpeed > 0) this.enemies.push(new ClimbingEnemy(this));
             this.enemies.push(new FlyingEnemy(this));
-            console.log(this.enemies)
         }
     }
 

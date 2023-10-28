@@ -3,7 +3,10 @@ import {
     Running,
     Jumping,
     Falling,
-    Rolling
+    Rolling,
+    // Dive,
+    // Hit,
+    // Dead
 } from './playerStates.js';
 
 export class Player {
@@ -24,7 +27,7 @@ export class Player {
         this.frameInterval = 1000 / this.fps;
         this.speed = 0;
         this.maxSpeed = 5;
-        this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this), new Rolling(this)];
+        this.states = [new Sitting(this), new Running(this), new Jumping(this), new Falling(this), new Rolling(this)]; //, new Dive(this), new Hit(this), new Dead(this)
         this.currentState = this.states[0];
 
         if (this.currentState instanceof Sitting) {
