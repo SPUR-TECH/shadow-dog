@@ -112,16 +112,15 @@ export class Rolling extends State {
         this.player.maxFrame = 6;
         this.player.frameY = 6;
         this.player.isSitting = false;
-
     }
     handleInput(input) {
         if (input.includes('Enter')) {
             this.player.setState(states.ROLLING);
-        } else if (input.includes('ArrowUp')) {
+        } else if (input.includes('ArrowUp') || input.includes('swipe up')) {
             this.player.setState(states.JUMPING);
-        } else if (input.includes('ArrowDown')) {
+        } else if (input.includes('ArrowDown') || input.includes('swipe down')) {
             this.player.setState(states.SITTING);
-        } else if (input.includes('ArrowLeft') || input.includes('ArrowRight') && this.player.onGround()) {
+        } else if (input.includes('ArrowLeft') || input.includes('ArrowRight') || input.includes('swipe left') || input.includes('swipe right') && this.player.onGround()) {
             this.player.setState(states.RUNNING);
         }
     }

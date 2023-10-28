@@ -9,7 +9,7 @@ export class Enemy {
     }
     update(deltaTime) {
         // movement
-        this.x -= this.speedX;
+        this.x -= this.speedX + this.game.speed;
         this.y += this.speedY;
         if (this.frameTimer > this.frameInterval) {
             this.frameTimer = 0;
@@ -32,9 +32,9 @@ export class FlyingEnemy extends Enemy {
         this.game = game;
         this.width = 66.66;
         this.height = 47;
-        this.x = this.game.width;
+        this.x = this.game.width + Math.random() * this.game.width * 0.5;
         this.y = Math.random() * this.game.height * 0.5;
-        this.speedX = 2;
+        this.speedX = Math.random() + 2;
         this.speedY = 0;
         this.maxFrame = 5;
         this.image = document.getElementById('bat-3')

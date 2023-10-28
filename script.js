@@ -55,6 +55,7 @@ window.addEventListener('load', function () {
             this.enemies = [];
             this.enemyTimer = 0;
             this.enemyInterval = 1000;
+            this.speed = gameSpeed;
         }
         update(deltaTime) {
             this.player.update(this.InputHandler.keys, deltaTime);
