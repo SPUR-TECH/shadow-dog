@@ -1,6 +1,7 @@
 // Video 1 setup and player..... https://www.youtube.com/watch?v=c-1dBd1_G8A&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=12
 // Video 2 state control..... https://www.youtube.com/watch?v=ug-gdfGb7I8&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=13
 // Video 3 Enemies..... https://www.youtube.com/watch?v=lqNztI7BMf8&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=15
+// Video 4 Collision detection and extra states..... https://www.youtube.com/watch?v=6ppfyWdoH3c&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=15
 
 import {
     Player
@@ -16,6 +17,9 @@ import {
     ClimbingEnemy,
     GroundEnemy
 } from './enemies.js';
+import {
+    UI
+} from './UI.js';
 
 window.addEventListener('load', function () {
     const canvas = document.getElementById("canvas1");
@@ -50,11 +54,15 @@ window.addEventListener('load', function () {
             this.height = height;
             this.groundMargin = 50;
             this.player = new Player(this);
-            this.InputHandler = new InputHandler();
+            this.InputHandler = new InputHandler(this);
+            this.UI = new UI(this);
             this.enemies = [];
             this.enemyTimer = 0;
             this.enemyInterval = 1500;
             this.speed = gameSpeed;
+            this.debug = false;
+            this.score = 0;
+            this.fontColor = 'yellow'
         }
         update(deltaTime) {
             this.player.update(this.InputHandler.keys, deltaTime);
@@ -75,6 +83,7 @@ window.addEventListener('load', function () {
             this.enemies.forEach(enemy => {
                 enemy.draw(context);
             });
+            this.UI.draw(context);
         }
         addEnemy() {
             if (gameSpeed > 0 && Math.random() < 0.3) this.enemies.push(new GroundEnemy(this));

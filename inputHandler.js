@@ -1,9 +1,6 @@
-import {
-    Player
-} from './player.js';
-
 export class InputHandler {
-    constructor() {
+    constructor(game) {
+        this.game = game;
         this.keys = [];
         this.touchY = 0;
         this.touchX = 0;
@@ -13,7 +10,7 @@ export class InputHandler {
             if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Enter') {
                 if (this.keys.indexOf(e.key) === -1) {
                     this.keys.push(e.key);
-                }
+                } else if (e.key === 'd') this.game.debug = !this.game.debug;
             }
         });
 

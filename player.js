@@ -34,6 +34,7 @@ export class Player {
         this.currentState.enter();
     }
     update(input, deltaTime) {
+        this.checkCollisions();
         this.currentState.handleInput(input);
 
         this.x += this.speed;
@@ -61,6 +62,7 @@ export class Player {
         }
     }
     draw(ctx) {
+        if (this.game.debug) ctx.strokeRect(this.x, this.y, this.width, this.height);
         ctx.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
     }
     onGround() {
@@ -69,5 +71,19 @@ export class Player {
     setState(state) {
         this.currentState = this.states[state];
         this.currentState.enter();
+    }
+    // Collision detected
+    checkCollisions() {
+        this.game.enemies.forEach(enemy => {
+            if (enemy.x < this.x + this.width &&
+                enemy.x + enemy.width > this.x &&
+                enemy.y < this.y + this.height &&
+                enemy.y + enemy.height > this.y) {
+                enemy.markedForDeletion = true;
+                this.game.score++;
+            } else {
+                // No collision
+            }
+        });
     }
 }
