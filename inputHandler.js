@@ -24,10 +24,11 @@ export class InputHandler {
         });
 
         window.addEventListener('touchstart', (e) => {
-            this.touchY = e.changedTouches[0].pageY;
-            this.touchX = e.changedTouches[0].pageX;
             if (e.targetTouches.length >= 2) {
                 this.keys.push('Enter');
+            } else {
+                this.touchY = e.changedTouches[0].pageY;
+                this.touchX = e.changedTouches[0].pageX;
             }
         });
 
