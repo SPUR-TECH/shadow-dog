@@ -1,4 +1,6 @@
-import { Player } from './player.js';
+import {
+    Player
+} from './player.js';
 
 export class InputHandler {
     constructor() {
@@ -24,22 +26,25 @@ export class InputHandler {
         window.addEventListener('touchstart', (e) => {
             this.touchY = e.changedTouches[0].pageY;
             this.touchX = e.changedTouches[0].pageX;
+            if (e.targetTouches.length >= 2) {
+                this.keys.push('Enter');
+            }
         });
 
         window.addEventListener('touchmove', (e) => {
-           const swipeYDistance = e.changedTouches[0].pageY - this.touchY;
-           const swipeXDistance = e.changedTouches[0].pageX - this.touchX;
+            const swipeYDistance = e.changedTouches[0].pageY - this.touchY;
+            const swipeXDistance = e.changedTouches[0].pageX - this.touchX;
 
-           if (swipeYDistance < -this.swipeThreshold && this.keys.indexOf('swipe up') === -1) {
-               this.keys.push('swipe up');
-           } else if (swipeYDistance > this.swipeThreshold && this.keys.indexOf('swipe down') === -1) {
-               this.keys.push('swipe down');
-           }
-           if (swipeXDistance < -this.swipeThreshold && this.keys.indexOf('swipe left') === -1) {
-            this.keys.push('swipe left');
-        } else if (swipeXDistance > this.swipeThreshold && this.keys.indexOf('swipe right') === -1) {
-            this.keys.push('swipe right');
-        }
+            if (swipeYDistance < -this.swipeThreshold && this.keys.indexOf('swipe up') === -1) {
+                this.keys.push('swipe up');
+            } else if (swipeYDistance > this.swipeThreshold && this.keys.indexOf('swipe down') === -1) {
+                this.keys.push('swipe down');
+            }
+            if (swipeXDistance < -this.swipeThreshold && this.keys.indexOf('swipe left') === -1) {
+                this.keys.push('swipe left');
+            } else if (swipeXDistance > this.swipeThreshold && this.keys.indexOf('swipe right') === -1) {
+                this.keys.push('swipe right');
+            }
         });
 
         window.addEventListener('touchend', (e) => {
@@ -47,13 +52,15 @@ export class InputHandler {
             this.keys.splice(this.keys.indexOf('swipe down'), 1);
             this.keys.splice(this.keys.indexOf('swipe left'), 1);
             this.keys.splice(this.keys.indexOf('swipe right'), 1);
-           
+
+        });
+
+        window.addEventListener('touchcancel', (e) => {
+            this.keys.splice(this.keys.indexOf('swipe up'), 1);
+            this.keys.splice(this.keys.indexOf('swipe down'), 1);
+            this.keys.splice(this.keys.indexOf('swipe left'), 1);
+            this.keys.splice(this.keys.indexOf('swipe right'), 1);
+
         });
     }
 }
-
-
-
-
-
-

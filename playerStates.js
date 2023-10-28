@@ -29,7 +29,7 @@ export class Sitting extends State {
     handleInput(input) {
         if (input.includes('ArrowLeft') || input.includes('swipe left') || input.includes('swipe right') || input.includes('ArrowRight')) {
             this.player.setState(states.RUNNING);
-        } else if (input.includes('ArrowUp')|| input.includes('swipe up')) {
+        } else if (input.includes('ArrowUp') || input.includes('swipe up')) {
             this.player.setState(states.JUMPING);
         } else if (input.includes('Enter')) {
             this.player.setState(states.ROLLING);
@@ -65,7 +65,7 @@ export class Jumping extends State {
         this.player = player;
     }
     enter() {
-        if (this.player.onGround()) this.player.vy -= 26.5
+        if (this.player.onGround()) this.player.vy -= 31
 
         this.player.frameX = 0;
         this.player.maxFrame = 6;
