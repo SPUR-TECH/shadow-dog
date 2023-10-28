@@ -23,7 +23,7 @@ window.addEventListener('load', function () {
     canvas.width = 1600;
     canvas.height = 710;
 
-    let gameSpeed = 2;
+    let gameSpeed = 1;
 
     // let enemies = [];
     // let score = 0;
@@ -77,7 +77,8 @@ window.addEventListener('load', function () {
             });
         }
         addEnemy() {
-            if (this.speed > 0 && Math.random() < 0.3) this.enemies.push(new GroundEnemy(this));
+            if (gameSpeed > 0 && Math.random() < 0.3) this.enemies.push(new GroundEnemy(this));
+            else if (gameSpeed > 0) this.enemies.push(new ClimbingEnemy(this));
             this.enemies.push(new FlyingEnemy(this));
             console.log(this.enemies)
         }
@@ -171,7 +172,7 @@ window.addEventListener('load', function () {
         if (game.player.currentState instanceof Sitting) {
             gameSpeed = 0; // Set gameSpeed to 0 when the player is sitting
         } else {
-            gameSpeed = 2; // Set the game speed back to its original value in other states
+            gameSpeed = 1; // Set the game speed back to its original value in other states
         }
 
         layerObjects.forEach(object => {
