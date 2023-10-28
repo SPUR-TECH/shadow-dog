@@ -60,7 +60,7 @@ window.addEventListener('load', function () {
             this.enemyTimer = 0;
             this.enemyInterval = 1500;
             this.speed = gameSpeed;
-            this.debug = true;
+            this.debug = false;
             this.score = 0;
             this.fontColor = 'yellow'
         }
