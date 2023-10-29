@@ -9,7 +9,7 @@ const states = {
     JUMPING: 2,
     FALLING: 3,
     ROLLING: 4,
-    DIVE: 5,
+    DIVING: 5,
     HIT: 6,
     DEAD: 7,
 
@@ -33,11 +33,11 @@ export class Sitting extends State {
     }
     handleInput(input) {
         if (input.includes('ArrowLeft') || input.includes('swipe left') || input.includes('swipe right') || input.includes('ArrowRight')) {
-            this.game.player.setState(states.RUNNING);
+            this.game.player.setState(states.RUNNING, 1);
         } else if (input.includes('ArrowUp') || input.includes('swipe up')) {
-            this.game.player.setState(states.JUMPING);
+            this.game.player.setState(states.JUMPING, 1);
         } else if (input.includes('Enter')) {
-            this.game.player.setState(states.ROLLING);
+            this.game.player.setState(states.ROLLING, 2);
         }
     }
 }
@@ -55,11 +55,11 @@ export class Running extends State {
     handleInput(input) {
         this.game.particles.push(new Dust(this.game, this.game.player.x + this.game.player.width * 0.5 + 20, this.game.player.y + this.game.player.height));
         if (input.includes('ArrowDown') || input.includes('swipe down')) {
-            this.game.player.setState(states.SITTING);
+            this.game.player.setState(states.SITTING, 0);
         } else if (input.includes('ArrowUp') || input.includes('swipe up')) {
-            this.game.player.setState(states.JUMPING);
+            this.game.player.setState(states.JUMPING, 1);
         } else if (input.includes('Enter')) {
-            this.game.player.setState(states.ROLLING);
+            this.game.player.setState(states.ROLLING, 2);
         }
     }
 }
@@ -78,9 +78,9 @@ export class Jumping extends State {
     }
     handleInput(input) {
         if (this.game.player.vy > this.game.player.weight) {
-            this.game.player.setState(states.FALLING);
+            this.game.player.setState(states.FALLING, 1);
         } else if (input.includes('Enter')) {
-            this.game.player.setState(states.ROLLING);
+            this.game.player.setState(states.ROLLING, 2);
         }
     }
 }
@@ -118,9 +118,9 @@ export class Rolling extends State {
     handleInput(input) {
         this.game.particles.unshift(new Fire(this.game, this.game.player.x + this.game.player.width * 0.5, this.game.player.y + this.game.player.height * 0.5));
         if (!input.includes('Enter', 'swipe up', 'swipe down') && this.game.player.onGround) {
-            this.game.player.setState(states.RUNNING);
+            this.game.player.setState(states.RUNNING, 1);
         } else if (!input.includes('Enter', 'swipe up', 'swipe down') && !this.game.player.onGround) {
-            this.game.player.setState(states.FALLING);
+            this.game.player.setState(states.FALLING, 1);
         } else if (input.includes('Enter') && input.includes('ArrowUp') && this.game.player.onGround()) {
             this.game.player.vy -= 32;
         } else if (input.includes('Enter') && input.includes('swipe up') && this.game.player.onGround()) {
@@ -129,9 +129,9 @@ export class Rolling extends State {
     }
 }
 
-// export class Dive extends State {
+// export class DIVING extends State {
 //     constructor(player) {
-//         super('DIVE');
+//         super('DIVING');
 //         this.player = player;
 //     }
 //     enter() {

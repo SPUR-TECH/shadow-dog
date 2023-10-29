@@ -21,6 +21,7 @@ export class InputHandler {
         });
 
         window.addEventListener('touchstart', (e) => {
+            e.preventDefault();
             if (e.targetTouches.length >= 2) {
                 this.keys.push('Enter');
             } else {

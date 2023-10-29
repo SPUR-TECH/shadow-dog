@@ -4,7 +4,7 @@ import {
     Jumping,
     Falling,
     Rolling,
-    // Dive,
+    // Diving,
     // Hit,
     // Dead
 } from './playerStates.js';
@@ -21,12 +21,11 @@ export class Player {
         this.image = document.getElementById('player');
         this.frameX = 0;
         this.frameY = 0;
-        this.maxFrame = 0;
         this.fps = 20;
         this.frameTimer = 0;
         this.frameInterval = 1000 / this.fps;
         this.speed = 0;
-        this.maxSpeed = 5;
+        this.maxSpeed = 10;
         this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game)]; //, new Dive(this.game), new Hit(this.game), new Dead(this.game)
     }
     update(input, deltaTime) {
@@ -64,8 +63,9 @@ export class Player {
     onGround() {
         return this.y >= this.game.height - this.height - this.game.groundMargin;
     }
-    setState(state) {
+    setState(state, speed) {
         this.currentState = this.states[state];
+        this.game.speed = this.game.maxSpeed * speed;
         this.currentState.enter();
     }
     // Collision detected
