@@ -104,13 +104,11 @@ window.addEventListener('load', function () {
             this.UI.draw(context);
         }
         addEnemy() {
-            if (this.speed > 0 && Math.random() < 0.3) this.enemies.push(new GroundZombie(this));
-            if (this.speed > 0 && Math.random() < 0.3) this.enemies.push(new WalkingZombie(this));
-            else if (this.speed > 0) this.enemies.push(new ClimbingEnemy(this));
-            this.enemies.push(new BatEnemy(this));
-            this.enemies.push(new RavenEnemy(this));
-
-            console.log(this.enemies);
+            if (this.speed > 0 && Math.random() < 0.3) this.enemies.unshift(new GroundZombie(this));
+            if (this.speed > 0 && Math.random() < 0.3) this.enemies.unshift(new WalkingZombie(this));
+            else if (this.speed > 0) this.enemies.unshift(new ClimbingEnemy(this));
+            this.enemies.unshift(new BatEnemy(this));
+            this.enemies.unshift(new RavenEnemy(this));            
         }
     }
 

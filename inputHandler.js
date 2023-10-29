@@ -31,6 +31,7 @@ export class InputHandler {
         });
 
         window.addEventListener('touchmove', (e) => {
+            e.preventDefault();
             const swipeYDistance = e.changedTouches[0].pageY - this.touchY;
             const swipeXDistance = e.changedTouches[0].pageX - this.touchX;
 
