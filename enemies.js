@@ -27,7 +27,7 @@ export class Enemy {
     }
 }
 
-export class FlyingEnemy extends Enemy {
+export class BatEnemy extends Enemy {
     constructor(game) {
         super();
         this.game = game;
@@ -41,6 +41,28 @@ export class FlyingEnemy extends Enemy {
         this.image = document.getElementById('bat-3')
         this.angle = 0;
         this.va = Math.random() * 0.2 + 0.3;
+    }
+    update(deltaTime) {
+        super.update(deltaTime);
+        this.angle += this.va;
+        this.y += Math.sin(this.angle);
+    }
+}
+
+export class RavenEnemy extends Enemy {
+    constructor(game) {
+        super();
+        this.game = game;
+        this.width = 100;
+        this.height = 72;
+        this.x = this.game.width + Math.random() * this.game.width * 0.5;
+        this.y = Math.random() * this.game.height * 0.5;
+        this.speedX = Math.random() + 4;
+        this.speedY = 0;
+        this.maxFrame = 5;
+        this.image = document.getElementById('raven')
+        this.angle = 0;
+        this.va = Math.random() * 0.1 + 0.1;
     }
     update(deltaTime) {
         super.update(deltaTime);

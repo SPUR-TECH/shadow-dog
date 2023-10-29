@@ -11,7 +11,8 @@ import {
 } from './inputHandler.js';
 
 import {
-    FlyingEnemy,
+    BatEnemy,
+    RavenEnemy,
     ClimbingEnemy,
     WalkingZombie,
     GroundZombie
@@ -96,16 +97,20 @@ window.addEventListener('load', function () {
             this.enemies.forEach(enemy => {
                 enemy.draw(context);
             });
+
             this.particles.forEach(particle => {
                 particle.draw(context);
             });
             this.UI.draw(context);
         }
         addEnemy() {
+            if (this.speed > 0 && Math.random() < 0.3) this.enemies.push(new GroundZombie(this));
             if (this.speed > 0 && Math.random() < 0.3) this.enemies.push(new WalkingZombie(this));
             else if (this.speed > 0) this.enemies.push(new ClimbingEnemy(this));
-            this.enemies.push(new FlyingEnemy(this));
-            this.enemies.push(new GroundZombie(this));
+            this.enemies.push(new BatEnemy(this));
+            this.enemies.push(new RavenEnemy(this));
+
+            console.log(this.enemies);
         }
     }
 
