@@ -49,7 +49,7 @@ export class FlyingEnemy extends Enemy {
     }
 }
 
-export class GroundEnemy extends Enemy {
+export class WalkingZombie extends Enemy {
     constructor(game) {
         super();
         this.game = game;
@@ -61,6 +61,21 @@ export class GroundEnemy extends Enemy {
         this.speedY = 0;
         this.maxFrame = 7;
         this.image = document.getElementById('zombie')
+    }
+}
+
+export class GroundZombie extends Enemy {
+    constructor(game) {
+        super();
+        this.game = game;
+        this.width = 120.12;
+        this.height = 90;
+        this.x = this.game.width
+        this.y = this.game.height - this.height - this.game.groundMargin;
+        this.speedX = 0;
+        this.speedY = 0;
+        this.maxFrame = 7;
+        this.image = document.getElementById('ground-zombie')
     }
 }
 

@@ -29,7 +29,6 @@ export class Sitting extends State {
         this.game.player.frameX = 0;
         this.game.player.maxFrame = 4;
         this.game.player.frameY = 5;
-        this.game.player.isSitting = true;
     }
     handleInput(input) {
         if (input.includes('ArrowLeft') || input.includes('swipe left') || input.includes('swipe right') || input.includes('ArrowRight')) {
@@ -50,7 +49,6 @@ export class Running extends State {
         this.game.player.frameX = 0;
         this.game.player.maxFrame = 6;
         this.game.player.frameY = 3;
-        this.game.player.isSitting = true;
     }
     handleInput(input) {
         this.game.particles.push(new Dust(this.game, this.game.player.x + this.game.player.width * 0.5 + 20, this.game.player.y + this.game.player.height));
@@ -74,7 +72,6 @@ export class Jumping extends State {
         this.game.player.frameX = 0;
         this.game.player.maxFrame = 6;
         this.game.player.frameY = 1;
-        this.game.player.isSitting = false;
     }
     handleInput(input) {
         if (this.game.player.vy > this.game.player.weight) {
@@ -93,8 +90,6 @@ export class Falling extends State {
         this.game.player.frameX = 0;
         this.game.player.maxFrame = 6;
         this.game.player.frameY = 2;
-        this.game.player.isSitting = false;
-
     }
     handleInput(input) {
         if (this.game.player.onGround()) {
@@ -113,7 +108,6 @@ export class Rolling extends State {
         this.game.player.frameX = 0;
         this.game.player.maxFrame = 6;
         this.game.player.frameY = 6;
-        this.game.player.isSitting = false;
     }
     handleInput(input) {
         this.game.particles.unshift(new Fire(this.game, this.game.player.x + this.game.player.width * 0.5, this.game.player.y + this.game.player.height * 0.5));
@@ -138,7 +132,7 @@ export class Rolling extends State {
 //         this.player.frameX = 0;
 //         this.player.maxFrame = 6;
 //         this.player.frameY = 6;
-//         this.player.isSitting = false;
+
 //     }
 //     handleInput(input) {
 //         if (input.includes('Enter')) {

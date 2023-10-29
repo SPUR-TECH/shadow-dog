@@ -9,13 +9,12 @@ import {
 import {
     InputHandler
 } from './inputHandler.js';
-import {
-    Sitting
-} from './playerStates.js';
+
 import {
     FlyingEnemy,
     ClimbingEnemy,
-    GroundEnemy
+    WalkingZombie,
+    GroundZombie
 } from './enemies.js';
 import {
     UI
@@ -30,9 +29,6 @@ window.addEventListener('load', function () {
     const ctx = canvas.getContext('2d');
     canvas.width = 1600;
     canvas.height = 710;
-
-    // let gameSpeed = 2;
-
 
     // let canvasPosition = canvas.getBoundingClientRect();
 
@@ -106,9 +102,10 @@ window.addEventListener('load', function () {
             this.UI.draw(context);
         }
         addEnemy() {
-            if (this.speed > 0 && Math.random() < 0.3) this.enemies.push(new GroundEnemy(this));
+            if (this.speed > 0 && Math.random() < 0.3) this.enemies.push(new WalkingZombie(this));
             else if (this.speed > 0) this.enemies.push(new ClimbingEnemy(this));
             this.enemies.push(new FlyingEnemy(this));
+            this.enemies.push(new GroundZombie(this));
         }
     }
 
