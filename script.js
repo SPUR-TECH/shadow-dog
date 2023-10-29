@@ -2,6 +2,7 @@
 // Video 2 state control..... https://www.youtube.com/watch?v=ug-gdfGb7I8&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=13
 // Video 3 Enemies..... https://www.youtube.com/watch?v=lqNztI7BMf8&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=15
 // Video 4 Collision detection and extra states..... https://www.youtube.com/watch?v=6ppfyWdoH3c&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=15
+//  Video 5 Splash on dive state and dust animation on collision..... https://www.youtube.com/watch?v=KICADKr_zeM&t=0s
 
 import {
     Player
@@ -56,6 +57,7 @@ window.addEventListener('load', function () {
             this.UI = new UI(this);
             this.enemies = [];
             this.particles = [];
+            this.collisions = [];
             this.maxParticles = 80;
             this.enemyTimer = 0;
             this.enemyInterval = 1500;
@@ -90,6 +92,11 @@ window.addEventListener('load', function () {
             if (this.particles.length > this.maxParticles) {
                 this.particles = this.particles.slice(0, this.maxParticles);
             }
+            // Handle collision sprites
+            this.collisions.forEach((collision, index) => {
+                collision.update(deltaTime);
+                if (collision.markedForDeletion) this.collisions.splice(index, 1);
+            });
         }
         draw(context) {
             this.background.draw(context);
@@ -101,6 +108,9 @@ window.addEventListener('load', function () {
             this.particles.forEach(particle => {
                 particle.draw(context);
             });
+            this.collisions.forEach(collision => {
+                collision.draw(context);
+            });
             this.UI.draw(context);
         }
         addEnemy() {
@@ -108,7 +118,7 @@ window.addEventListener('load', function () {
             if (this.speed > 0 && Math.random() < 0.3) this.enemies.unshift(new WalkingZombie(this));
             else if (this.speed > 0) this.enemies.unshift(new ClimbingEnemy(this));
             this.enemies.unshift(new BatEnemy(this));
-            this.enemies.unshift(new RavenEnemy(this));            
+            this.enemies.unshift(new RavenEnemy(this));
         }
     }
 

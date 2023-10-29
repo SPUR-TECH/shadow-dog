@@ -5,9 +5,12 @@ import {
     Falling,
     Rolling,
     Diving,
-    // Hit,
+    Hit,
     // Dead
 } from './playerStates.js';
+import {
+    CollisionAnimation
+} from './collision-animation.js'
 
 export class Player {
     constructor(game) {
@@ -26,11 +29,12 @@ export class Player {
         this.frameInterval = 1000 / this.fps;
         this.speed = 0;
         this.maxSpeed = 10;
-        this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game), new Diving(this.game)]; // new Hit(this.game), new Dead(this.game)
+        this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game), new Diving(this.game), new Hit(this.game)]; // new Dead(this.game)
     }
     update(input, deltaTime) {
         this.checkCollisions();
         this.currentState.handleInput(input);
+
         // Horizontal movement
         this.x += this.speed;
 
@@ -79,7 +83,15 @@ export class Player {
                 enemy.y < this.y + this.height &&
                 enemy.y + enemy.height > this.y) {
                 enemy.markedForDeletion = true;
-                this.game.score++;
+
+                this.game.collisions.push(new CollisionAnimation(this.game, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5));
+
+                if (this.currentState === this.states[4] || this.currentState === this.states[5]) {
+                    this.game.score++;
+                } else {
+                    this.setState(6, 0);
+                }
+
             } else {
                 // No collision
             }
