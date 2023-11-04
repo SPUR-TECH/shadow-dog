@@ -27,11 +27,48 @@ img {
     display: none;
 }
 
+#power-button-div {
+    position: absolute;
+    top: 50%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+}
+
+span {
+    position: absolute;
+    padding-bottom: 20px;
+    color: red;
+    font-weight: 900;
+    font-size: 12px;
+    top: 75%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+}
+
+#button-roll-div {
+    cursor: pointer;
+    opacity: .4;
+}
+
+#roll-button-image {
+    position: relative;
+    display: flex;
+}
+
+#roll-button {
+    display: flex;
+    border: none;
+    background-color: transparent;
+    z-index: 100;
+}
+
 #button-div {
     position: absolute;
     top: 50%;
     left: 15%;
     transform: translate(-50%, -50%);
+    user-select: none;
 }
 
 #button-up-div {
@@ -139,6 +176,10 @@ img {
     }
 
     #button-left-div {
+        display: none;
+    }
+
+    #power-button-div {
         display: none;
     }
 }
