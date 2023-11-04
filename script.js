@@ -3,6 +3,7 @@
 // Video 3 Enemies..... https://www.youtube.com/watch?v=lqNztI7BMf8&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=15
 // Video 4 Collision detection and extra states..... https://www.youtube.com/watch?v=6ppfyWdoH3c&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=15
 //  Video 5 Splash on dive state and dust animation on collision and game timer and game over..... https://www.youtube.com/watch?v=KICADKr_zeM&t=0s
+// Video 6 lives..... https://www.youtube.com/watch?v=tWS_eURr2_w&t=0s
 
 import {
     Player
@@ -58,16 +59,19 @@ window.addEventListener('load', function () {
             this.enemies = [];
             this.particles = [];
             this.collisions = [];
+            this.floatingMessages = [];
             this.maxParticles = 80;
             this.enemyTimer = 0;
             this.enemyInterval = 1500;
             this.speed = 0;
             this.maxSpeed = 6;
             this.score = 0;
+            this.winningScore = 40;
             this.fontColor = 'yellow'
             this.time = 0;
-            this.maxTime = 10000;
+            this.maxTime = 30000;
             this.gameOver = false;
+            this.lives = 5;
             this.player.currentState = this.player.states[0];
             this.player.currentState.enter();
         }
@@ -85,13 +89,15 @@ window.addEventListener('load', function () {
             }
             this.enemies.forEach(enemy => {
                 enemy.update(deltaTime);
-                if (enemy.markedForDeletion) this.enemies.splice(this.enemies.indexOf(enemy), 1);
+            });
+            // Handle floating messages
+            this.floatingMessages.forEach(message => {
+                message.update(deltaTime);
             });
 
             // Handle particles
             this.particles.forEach((particles, index) => {
                 particles.update();
-                if (particles.markedForDeletion) this.particles.splice(index, 1);
             });
             if (this.particles.length > this.maxParticles) {
                 this.particles = this.particles.slice(0, this.maxParticles);
@@ -99,8 +105,11 @@ window.addEventListener('load', function () {
             // Handle collision sprites
             this.collisions.forEach((collision, index) => {
                 collision.update(deltaTime);
-                if (collision.markedForDeletion) this.collisions.splice(index, 1);
             });
+            this.enemies = this.enemies.filter(enemy => !enemy.markedForDeletion);
+            this.particles = this.particles.filter(particle => !particle.markedForDeletion);
+            this.collisions = this.collisions.filter(collision => !collision.markedForDeletion);
+            this.floatingMessages = this.floatingMessages.filter(message => !message.markedForDeletion);
         }
         draw(context) {
             this.background.draw(context);
@@ -115,6 +124,9 @@ window.addEventListener('load', function () {
             this.collisions.forEach(collision => {
                 collision.draw(context);
             });
+            this.floatingMessages.forEach(message => {
+                message.draw(context);
+            });
             this.UI.draw(context);
         }
         addEnemy() {
@@ -123,6 +135,7 @@ window.addEventListener('load', function () {
             else if (this.speed > 0) this.enemies.unshift(new ClimbingEnemy(this));
             this.enemies.unshift(new BatEnemy(this));
             this.enemies.unshift(new RavenEnemy(this));
+            console.log(this.enemies, this.particles, this.collisions, this.floatingMessages);
         }
     }
 

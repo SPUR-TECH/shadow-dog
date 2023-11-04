@@ -3,29 +3,35 @@ export class UI {
         this.game = game;
         this.fontSize = 30;
         this.fontFamily = 'Creepster'
+        this.liveImage = document.getElementById('lives');
     }
     draw(context) {
         // Score
         context.font = this.fontSize + 'px ' + this.fontFamily;
         context.textAlign = 'left';
-        context.fillStyle = 'red';
+        context.fillStyle = 'black';
         context.fillText('Score: ' + this.game.score, 20, 50);
         context.fillStyle = 'yellow';
         context.fillText('Score: ' + this.game.score, 24, 54)
 
         //  Timer
         context.font = this.fontSize * 0.8 + ' px' + this.fontFamily;
-        context.fillStyle = 'red';
+        context.fillStyle = 'black';
         context.fillText('Time: ' + (this.game.time * 0.001).toFixed(1), 20, 80);
         context.fillStyle = 'yellow';
         context.fillText('Time: ' + (this.game.time * 0.001).toFixed(1), 24, 84);
+
+        // Lives
+        for (let i = 0; i < this.game.lives; i++) {
+            context.drawImage(this.liveImage, 60 * i + 20, 95, 60, 60);
+        }
 
         // Game over message
         if (this.game.gameOver) {
             context.textAlign = 'center';
             context.font = this.fontSize * 6 + 'px ' + this.fontFamily;
 
-            if (this.game.score > 5) {
+            if (this.game.score > this.game.winningScore) {
                 context.fillStyle = 'black'
                 context.fillText('Sweet !!', this.game.width * 0.5, this.game.height * 0.5 - 22);
                 context.fillStyle = 'red'
