@@ -94,7 +94,7 @@ window.addEventListener('load', function () {
                 if (particles.markedForDeletion) this.particles.splice(index, 1);
             });
             if (this.particles.length > this.maxParticles) {
-                this.particles = this.maxParticles;
+                this.particles = this.particles.slice(0, this.maxParticles);
             }
             // Handle collision sprites
             this.collisions.forEach((collision, index) => {
