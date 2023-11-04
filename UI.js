@@ -21,6 +21,7 @@ export class UI {
         context.restore();
         // Game over message
         if (this.game.gameOver) {
+            context.save();
             context.shadowOffsetX = 2;
             context.shadowOffSetY = 2;
             context.shadowColor = 'yellow';
