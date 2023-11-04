@@ -5,41 +5,47 @@ export class UI {
         this.fontFamily = 'Creepster'
     }
     draw(context) {
-        context.save();
-        context.shadowOffsetX = 2;
-        context.shadowOffSetY = 2;
-        context.shadowColor = 'red';
-        context.shadowBlur = 0;
+        // Score
         context.font = this.fontSize + 'px ' + this.fontFamily;
         context.textAlign = 'left';
-        context.fillStyle = this.game.fontColor;
-        // Score
+        context.fillStyle = 'black';
         context.fillText('Score: ' + this.game.score, 20, 50);
+        context.fillStyle = 'yellow';
+        context.fillText('Score: ' + this.game.score, 24, 54)
+
         //  Timer
         context.font = this.fontSize * 0.8 + ' px' + this.fontFamily;
+        context.fillStyle = 'black';
         context.fillText('Time: ' + (this.game.time * 0.001).toFixed(1), 20, 80);
-        context.restore();
+        context.fillStyle = 'yellow';
+        context.fillText('Time: ' + (this.game.time * 0.001).toFixed(1), 24, 84);
+
         // Game over message
         if (this.game.gameOver) {
-            context.save();
-            context.shadowOffsetX = 2;
-            context.shadowOffSetY = 2;
-            context.shadowColor = 'yellow';
-            context.shadowBlur = 0;
             context.textAlign = 'center';
             context.font = this.fontSize * 4 + 'px ' + this.fontFamily;
-            context.fillStyle = 'red'
+
             if (this.game.score > 5) {
+                context.fillStyle = 'black'
                 context.fillText('Sweet !!', this.game.width * 0.5, this.game.height * 0.5 - 20);
+                context.fillStyle = 'red'
+                context.fillText('Sweet !!', this.game.width * 0.5 + 6, this.game.height * 0.5 - 14);
                 context.font = this.fontSize * 1 + 'px ' + this.fontFamily;
+                context.fillStyle = 'black'
                 context.fillText('You did it congratulations !!', this.game.width * 0.5, this.game.height * 0.5 + 20);
+                context.fillStyle = 'red'
+                context.fillText('You did it congratulations !!', this.game.width * 0.5 + 4, this.game.height * 0.5 + 24);
             } else {
-                context.font = this.fontSize * 4 + 'px ' + this.fontFamily;
+                context.fillStyle = 'black'
                 context.fillText('Unlucky !!', this.game.width * 0.5, this.game.height * 0.5 - 20);
+                context.fillStyle = 'red'
+                context.fillText('Unlucky !!', this.game.width * 0.5 + 6, this.game.height * 0.5 - 14);
                 context.font = this.fontSize * 1 + 'px ' + this.fontFamily;
+                context.fillStyle = 'black'
                 context.fillText('Better luck next time !!', this.game.width * 0.5, this.game.height * 0.5 + 20);
+                context.fillStyle = 'red'
+                context.fillText('Better luck next time !!', this.game.width * 0.5 + 4, this.game.height * 0.5 + 24);
             }
         }
-        context.restore();
     }
 }
