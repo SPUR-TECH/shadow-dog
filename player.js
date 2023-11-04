@@ -64,7 +64,6 @@ export class Player {
         }
     }
     draw(ctx) {
-        if (this.game.debug) ctx.strokeRect(this.x, this.y, this.width, this.height);
         ctx.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
     }
     onGround() {

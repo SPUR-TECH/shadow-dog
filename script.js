@@ -63,7 +63,6 @@ window.addEventListener('load', function () {
             this.enemyInterval = 1500;
             this.speed = 0;
             this.maxSpeed = 6;
-            this.debug = false;
             this.score = 0;
             this.fontColor = 'yellow'
             this.player.currentState = this.player.states[0];
@@ -122,18 +121,25 @@ window.addEventListener('load', function () {
         }
     }
 
-    const game = new Game(canvas.width, canvas.height);
+    let game = new Game(canvas.width, canvas.height);
 
     let lastTime = 0;
+    let fixedTimeStep = 16; // 60 FPS (1000ms / 60)
 
-    function animate(timeStamp) {
-        const deltaTime = timeStamp - lastTime;
+    function updateLoop(timeStamp) {
+        let deltaTime = timeStamp - lastTime;
         lastTime = timeStamp;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        game.update(deltaTime);
+        while (deltaTime >= fixedTimeStep) {
+            game.update(fixedTimeStep);
+            deltaTime -= fixedTimeStep;
+        }
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         game.draw(ctx);
-        requestAnimationFrame(animate);
+
+        requestAnimationFrame(updateLoop);
     }
-    animate(0);
+
+    updateLoop(0);
 });
