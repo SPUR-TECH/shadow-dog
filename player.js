@@ -33,6 +33,7 @@ export class Player {
         this.speed = 0;
         this.maxSpeed = 10;
         this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game), new Diving(this.game), new Hit(this.game)]; // new Dead(this.game)
+        this.currentState = null;
     }
     update(input, deltaTime) {
         this.checkCollisions();
@@ -67,6 +68,11 @@ export class Player {
         }
     }
     draw(ctx) {
+        // ctx.lineWidth = 5;
+        // ctx.strokeStyle = 'white'
+        // ctx.beginPath()
+        // ctx.arc(this.x + this.width / 2, this.y + this.height / 2 + 20, this.width / 3, 0, Math.PI * 2)
+        // ctx.stroke()
         ctx.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
     }
     onGround() {
@@ -93,6 +99,7 @@ export class Player {
                     this.game.floatingMessages.push(new FloatingMessage('+1', enemy.x, enemy.y, 150, 50));
                 } else {
                     this.setState(6, 0);
+                    this.game.score -= 5;
                     this.game.lives--;
                     if (this.game.lives <= 0) this.game.gameOver = true;
                 }

@@ -11,7 +11,6 @@ export class InputHandler {
         const left = document.getElementById("left-button-image");
 
         const handleTouchStart = (e, key) => {
-            e.preventDefault();
             this.keys.push(key);
             if (key === 'Enter') {
                 this.rollButtonPressed = true;

@@ -142,17 +142,13 @@ window.addEventListener('load', function () {
     let game = new Game(canvas.width, canvas.height);
 
     let lastTime = 0;
-    let fixedTimeStep = 16; // 60 FPS (1000ms / 60)
+
 
     function updateLoop(timeStamp) {
         let deltaTime = timeStamp - lastTime;
         lastTime = timeStamp;
-
-        while (deltaTime >= fixedTimeStep) {
-            game.update(fixedTimeStep);
-            deltaTime -= fixedTimeStep;
-        }
-
+        game.update(deltaTime);
+        deltaTime -= lastTime;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         game.draw(ctx);
 

@@ -23,7 +23,7 @@ export class UI {
 
         // Lives
         for (let i = 0; i < this.game.lives; i++) {
-            context.drawImage(this.liveImage, 60 * i + 20, 95, 60, 60);
+            context.drawImage(this.liveImage, 30 * i + 20, 95, 30, 30);
         }
 
         // Game over message
