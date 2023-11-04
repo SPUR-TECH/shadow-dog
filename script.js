@@ -2,7 +2,7 @@
 // Video 2 state control..... https://www.youtube.com/watch?v=ug-gdfGb7I8&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=13
 // Video 3 Enemies..... https://www.youtube.com/watch?v=lqNztI7BMf8&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=15
 // Video 4 Collision detection and extra states..... https://www.youtube.com/watch?v=6ppfyWdoH3c&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=15
-//  Video 5 Splash on dive state and dust animation on collision..... https://www.youtube.com/watch?v=KICADKr_zeM&t=0s
+//  Video 5 Splash on dive state and dust animation on collision and game timer and game over..... https://www.youtube.com/watch?v=KICADKr_zeM&t=0s
 
 import {
     Player
@@ -65,10 +65,15 @@ window.addEventListener('load', function () {
             this.maxSpeed = 6;
             this.score = 0;
             this.fontColor = 'yellow'
+            this.time = 0;
+            this.maxTime = 10000;
+            this.gameOver = false;
             this.player.currentState = this.player.states[0];
             this.player.currentState.enter();
         }
         update(deltaTime) {
+            this.time += deltaTime;
+            if (this.time > this.maxTime) this.gameOver = true;
             this.background.update();
             this.player.update(this.input.keys, deltaTime);
             // Handle enemies
@@ -89,7 +94,7 @@ window.addEventListener('load', function () {
                 if (particles.markedForDeletion) this.particles.splice(index, 1);
             });
             if (this.particles.length > this.maxParticles) {
-                this.particles = this.particles.slice(0, this.maxParticles);
+                this.particles = this.maxParticles;
             }
             // Handle collision sprites
             this.collisions.forEach((collision, index) => {
@@ -138,7 +143,7 @@ window.addEventListener('load', function () {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         game.draw(ctx);
 
-        requestAnimationFrame(updateLoop);
+        if (!game.gameOver) requestAnimationFrame(updateLoop);
     }
 
     updateLoop(0);
