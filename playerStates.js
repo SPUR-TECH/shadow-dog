@@ -116,15 +116,17 @@ export class Rolling extends State {
     }
     handleInput(input) {
         this.game.particles.unshift(new Fire(this.game, this.game.player.x + this.game.player.width * 0.5, this.game.player.y + this.game.player.height * 0.5));
-        if (!input.includes('Enter', 'swipe up', 'swipe down') && this.game.player.onGround) {
+        if (!input.includes('Enter') && this.game.player.onGround) {
             this.game.player.setState(states.RUNNING, 1);
-        } else if (!input.includes('Enter', 'swipe up', 'swipe down') && !this.game.player.onGround) {
+        } else if (!input.includes('Enter') && !this.game.player.onGround()) {
             this.game.player.setState(states.FALLING, 1);
         } else if (input.includes('Enter') && input.includes('ArrowUp') && this.game.player.onGround()) {
             this.game.player.vy -= 32;
         } else if (input.includes('Enter') && input.includes('swipe up') && this.game.player.onGround()) {
             this.game.player.vy -= 32;
-        } else if (input.includes('ArrowDown') || input.includes('swipe down')) {
+        } else if (input.includes('Enter') && input.includes('ArrowDown') || input.includes('swipe down') && this.game.player.onGround()) {
+            this.game.player.setState(states.ROLLING, 2);
+        } else if (input.includes('Enter') && input.includes('ArrowDown') || input.includes('swipe down') && !this.game.player.onGround()) {
             this.game.player.setState(states.DIVING, 0);
         }
     }

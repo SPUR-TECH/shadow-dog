@@ -27,6 +27,85 @@ img {
     display: none;
 }
 
+#button-div {
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+}
+
+#button-up-div {
+    cursor: pointer;
+    opacity: .4;
+}
+
+#up-button-image {
+    position: relative;
+    display: flex;
+}
+
+#up-button {
+    display: flex;
+    border: none;
+    background-color: transparent;
+    z-index: 100;
+}
+
+#button-right-div {
+    margin-left: 40px;
+    cursor: pointer;
+    opacity: .4;
+}
+
+#right-button-image {
+    position: relative;
+    display: flex;
+}
+
+#right-button {
+    display: flex;
+    border: none;
+    background-color: transparent;
+    z-index: 100;
+}
+
+#button-down-div {
+    cursor: pointer;
+    opacity: .4;
+}
+
+#down-button-image {
+    position: relative;
+    display: flex;
+}
+
+#down-button {
+    display: flex;
+    border: none;
+    background-color: transparent;
+    z-index: 100;
+}
+
+#button-left-div {
+    position: absolute;
+    top: 50%;
+    left: -25%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    opacity: .4;
+}
+
+#left-button-image {
+    display: flex;
+}
+
+#left-button {
+    position: relative;
+    border: none;
+    background-color: transparent;
+    z-index: 100;
+}
+
 /* #fullscreen {
     position: absolute;
     top: 20px;
@@ -45,3 +124,21 @@ img {
     background-color: rgb(20, 102, 255);
     color: yellow;
 } */
+
+@media (min-width: 999px) {
+    #button-up-div {
+        display: none;
+    }
+
+    #button-right-div {
+        display: none;
+    }
+
+    #button-down-div {
+        display: none;
+    }
+
+    #button-left-div {
+        display: none;
+    }
+}
