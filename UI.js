@@ -23,28 +23,28 @@ export class UI {
         // Game over message
         if (this.game.gameOver) {
             context.textAlign = 'center';
-            context.font = this.fontSize * 4 + 'px ' + this.fontFamily;
+            context.font = this.fontSize * 6 + 'px ' + this.fontFamily;
 
             if (this.game.score > 5) {
                 context.fillStyle = 'black'
-                context.fillText('Sweet !!', this.game.width * 0.5, this.game.height * 0.5 - 20);
+                context.fillText('Sweet !!', this.game.width * 0.5, this.game.height * 0.5 - 22);
                 context.fillStyle = 'red'
-                context.fillText('Sweet !!', this.game.width * 0.5 + 6, this.game.height * 0.5 - 14);
-                context.font = this.fontSize * 1 + 'px ' + this.fontFamily;
+                context.fillText('Sweet !!', this.game.width * 0.5 + 8, this.game.height * 0.5 - 16);
+                context.font = this.fontSize * 1.5 + 'px ' + this.fontFamily;
                 context.fillStyle = 'black'
-                context.fillText('You did it congratulations !!', this.game.width * 0.5, this.game.height * 0.5 + 20);
+                context.fillText('You did it congratulations !!', this.game.width * 0.5 + 4, this.game.height * 0.5 + 30);
                 context.fillStyle = 'red'
-                context.fillText('You did it congratulations !!', this.game.width * 0.5 + 4, this.game.height * 0.5 + 24);
+                context.fillText('You did it congratulations !!', this.game.width * 0.5 + 4, this.game.height * 0.5 + 34);
             } else {
                 context.fillStyle = 'black'
-                context.fillText('Unlucky !!', this.game.width * 0.5, this.game.height * 0.5 - 20);
+                context.fillText('Unlucky !!', this.game.width * 0.5, this.game.height * 0.5 - 22);
                 context.fillStyle = 'red'
-                context.fillText('Unlucky !!', this.game.width * 0.5 + 6, this.game.height * 0.5 - 14);
-                context.font = this.fontSize * 1 + 'px ' + this.fontFamily;
+                context.fillText('Unlucky !!', this.game.width * 0.5 + 8, this.game.height * 0.5 - 16);
+                context.font = this.fontSize * 1.5 + 'px ' + this.fontFamily;
                 context.fillStyle = 'black'
-                context.fillText('Better luck next time !!', this.game.width * 0.5, this.game.height * 0.5 + 20);
+                context.fillText('Better luck next time !!', this.game.width * 0.5, this.game.height * 0.5 + 30);
                 context.fillStyle = 'red'
-                context.fillText('Better luck next time !!', this.game.width * 0.5 + 4, this.game.height * 0.5 + 24);
+                context.fillText('Better luck next time !!', this.game.width * 0.5 + 4, this.game.height * 0.5 + 34);
             }
         }
     }
