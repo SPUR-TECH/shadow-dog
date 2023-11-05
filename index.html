@@ -18,7 +18,7 @@
 <body>
     <canvas id="canvas1"></canvas>
 
-    <!-- <button id="fullscreen">~ Full-Screen ~</button> -->
+    <button id="startButton">~ Start ~</button>
 
     <!-- Direction buttons -->
     <div id="button-div">
@@ -80,8 +80,6 @@
     <img id="player" src="./images/shadow-dog-full.png">
 
     <!-- Enemies -->
-    <!-- <img id="worm" src="./images/enemy-1.png">
-    <img id="ghost" src="./images/enemy_ghost.png"> -->
     <img id="bat-3" src="./images/enemy-bat-3.png">
     <img id="raven" src="./images/enemy-raven.png">
     <img id="zombie" src="./images/enemy-zombie.png">
@@ -97,9 +95,15 @@
     <!-- Lives -->
     <img id="lives" src="./images/lives.png">
 
-    <!-- sounds -->
+    <!-- sounds
     <audio id="background" src="sounds/background.mp3"></audio>
-    <audio id="hit" src="sounds/sound-splat.mp3"></audio>
+    <audio id="hit" src="sounds/splat.mp3"></audio>
+    <audio id="jump" src="sounds/boing.mp3"></audio>
+    <audio id="yelp" src="sounds/yelp.mp3"></audio> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+        integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script type="module" src="script.js"></script>
 </body>

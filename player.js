@@ -15,6 +15,18 @@ import {
     FloatingMessage
 } from './floating-messages.js'
 
+Howler.volume(1)
+const audio = {
+    hit: new Howl({
+        src: './sounds/splat.mp3',
+        loop: false
+    }),
+    yelp: new Howl({
+        src: './sounds/yelp.mp3',
+        loop: false
+    }),
+}
+
 export class Player {
     constructor(game) {
         this.game = game;
@@ -34,6 +46,8 @@ export class Player {
         this.maxSpeed = 10;
         this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game), new Diving(this.game), new Hit(this.game)]; // new Dead(this.game)
         this.currentState = null;
+        this.jumpSound = new Audio();
+        this.jumpSound.src = './sounds/boing.mp3';
     }
     update(input, deltaTime) {
         this.checkCollisions();
@@ -52,12 +66,17 @@ export class Player {
         }
         if (this.x < 0) this.x = 0;
         if (this.x > this.game.width - this.width) this.x = this.game.width - this.width;
+
         // Vertical movement
+        if (input.includes('ArrowUp')) this.jumpSound.play();
         this.y += this.vy;
-        if (!this.onGround()) this.vy += this.weight;
-        else this.vy = 0;
+        if (!this.onGround()) {
+            this.vy += this.weight;
+        } else this.vy = 0;
+
         // Vertical boundaries
         if (this.y > this.game.height - this.height - this.game.groundMargin) this.y = this.game.height - this.height - this.game.groundMargin;
+
         // Sprite animation
         if (this.frameTimer > this.frameInterval) {
             this.frameTimer = 0;
@@ -91,6 +110,7 @@ export class Player {
                 enemy.y < this.y + this.height &&
                 enemy.y + enemy.height > this.y) {
                 enemy.markedForDeletion = true;
+                audio.hit.play();
 
                 this.game.collisions.push(new CollisionAnimation(this.game, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5));
 
@@ -101,9 +121,9 @@ export class Player {
                     this.setState(6, 0);
                     this.game.score -= 5;
                     this.game.lives--;
+                    audio.yelp.play();
                     if (this.game.lives <= 0) this.game.gameOver = true;
                 }
-
             } else {
                 // No collision
             }

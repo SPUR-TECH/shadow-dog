@@ -143,21 +143,21 @@ span {
     z-index: 100;
 }
 
-/* #fullscreen {
+#startButton {
     position: absolute;
     font-size: 20px;
-    padding: 8px;
-    top: 20px;
+    padding: 10px;
+    top: 40%;
     left: 50%;
     transform: translate(-50%);
     z-index: 110;
-    border-radius: 10px;
+    border-radius: 50px;
     background-color: blue;
     color: yellow;
     font-weight: 800;
     text-shadow: 0 .2rem .2rem rgba(0, 0, 0, .9);
     cursor: pointer;
-} */
+}
 
 /* #fullscreen:hover {
     background-color: rgb(20, 102, 255);

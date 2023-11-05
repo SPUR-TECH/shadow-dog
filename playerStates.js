@@ -51,6 +51,7 @@ export class Running extends State {
         this.game.player.maxFrame = 8;
         this.game.player.frameY = 3;
     }
+
     handleInput(input) {
         this.game.particles.unshift(new Dust(this.game, this.game.player.x + this.game.player.width * 0.5 + 20, this.game.player.y + this.game.player.height));
         if (input.includes('ArrowDown')) {
