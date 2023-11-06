@@ -26,18 +26,23 @@ export class InputHandler {
 
         roll.addEventListener("touchstart", (e) => handleTouchStart(e, 'Enter'));
         roll.addEventListener("touchend", () => handleTouchEnd('Enter'));
+        roll.addEventListener("touchcancel", () => handleTouchEnd('Enter'));
 
         jump.addEventListener("touchstart", (e) => handleTouchStart(e, 'ArrowUp'));
         jump.addEventListener("touchend", () => handleTouchEnd('ArrowUp'));
+        jump.addEventListener("touchcancel", () => handleTouchEnd('ArrowUp'));
 
         right.addEventListener("touchstart", (e) => handleTouchStart(e, 'ArrowRight'));
         right.addEventListener("touchend", () => handleTouchEnd('ArrowRight'));
+        right.addEventListener("touchcancel", () => handleTouchEnd('ArrowRight'));
 
         sit.addEventListener("touchstart", (e) => handleTouchStart(e, 'ArrowDown'));
         sit.addEventListener("touchend", () => handleTouchEnd('ArrowDown'));
+        sit.addEventListener("touchcancel", () => handleTouchEnd('ArrowDown'));
 
         left.addEventListener("touchstart", (e) => handleTouchStart(e, 'ArrowLeft'));
         left.addEventListener("touchend", () => handleTouchEnd('ArrowLeft'));
+        left.addEventListener("touchcancel", () => handleTouchEnd('ArrowLeft'));
 
         window.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Enter') {

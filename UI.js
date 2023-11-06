@@ -9,14 +9,14 @@ export class UI {
         // Score
         context.font = this.fontSize + 'px ' + this.fontFamily;
         context.textAlign = 'left';
-        context.fillStyle = 'red';
+        context.fillStyle = 'black';
         context.fillText('Score: ' + this.game.score, 20, 50);
         context.fillStyle = 'yellow';
         context.fillText('Score: ' + this.game.score, 24, 54)
 
         //  Timer
         context.font = this.fontSize * 0.8 + ' px' + this.fontFamily;
-        context.fillStyle = 'red';
+        context.fillStyle = 'black';
         context.fillText('Time: ' + (this.game.time * 0.001).toFixed(1), 20, 80);
         context.fillStyle = 'yellow';
         context.fillText('Time: ' + (this.game.time * 0.001).toFixed(1), 24, 84);

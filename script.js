@@ -54,6 +54,8 @@ window.addEventListener('load', function () {
             this.player.currentState.enter();
             this.zombieSound = new Audio();
             this.zombieSound.src = './sounds/zombie-growl.mp3';
+            this.diggingZombieSound = new Audio();
+            this.diggingZombieSound.src = './sounds/digging-zombie.mp3';
             this.backgroundSound = new Audio();
             this.backgroundSound.src = './sounds/background.mp3';
 
@@ -151,6 +153,7 @@ window.addEventListener('load', function () {
                 const randomValue = Math.random();
                 if (randomValue < 0.25) {
                     this.enemies.unshift(new GroundZombie(this));
+                    this.diggingZombieSound.play();
                 } else if (randomValue < 0.5) {
                     this.enemies.unshift(new WalkingZombie(this));
                     this.onScreenEnemies.push(this.enemies[0]);
