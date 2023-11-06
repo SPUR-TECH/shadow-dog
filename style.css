@@ -25,7 +25,6 @@ body {
 
 img {
     display: none;
-    pointer-events: none;
     user-select: none;
 }
 
@@ -35,7 +34,6 @@ img {
     left: 90%;
     transform: translate(-50%, -50%);
     user-select: none;
-    pointer-events: none;
     user-select: none;
 }
 
@@ -48,21 +46,18 @@ span {
     top: 75%;
     transform: translate(-50%, -50%);
     left: 50%;
-    pointer-events: none;
     user-select: none;
 }
 
 #button-roll-div {
     cursor: pointer;
     opacity: .4;
-    pointer-events: none;
     user-select: none;
 }
 
 #roll-button-image {
     position: relative;
     display: flex;
-    pointer-events: none;
     user-select: none;
 }
 
@@ -71,7 +66,6 @@ span {
     border: none;
     background-color: transparent;
     z-index: 100;
-    pointer-events: none;
     user-select: none;
 }
 
@@ -80,21 +74,18 @@ span {
     top: 50%;
     left: 15%;
     transform: translate(-50%, -50%);
-    pointer-events: none;
     user-select: none;
 }
 
 #button-up-div {
     cursor: pointer;
     opacity: .4;
-    pointer-events: none;
     user-select: none;
 }
 
 #up-button-image {
     position: relative;
     display: flex;
-    pointer-events: none;
     user-select: none;
 }
 
@@ -103,7 +94,6 @@ span {
     border: none;
     background-color: transparent;
     z-index: 100;
-    pointer-events: none;
     user-select: none;
 }
 
@@ -111,14 +101,12 @@ span {
     margin-left: 40px;
     cursor: pointer;
     opacity: .4;
-    pointer-events: none;
     user-select: none;
 }
 
 #right-button-image {
     position: relative;
     display: flex;
-    pointer-events: none;
     user-select: none;
 }
 
@@ -127,21 +115,18 @@ span {
     border: none;
     background-color: transparent;
     z-index: 100;
-    pointer-events: none;
     user-select: none;
 }
 
 #button-down-div {
     cursor: pointer;
     opacity: .4;
-    pointer-events: none;
     user-select: none;
 }
 
 #down-button-image {
     position: relative;
     display: flex;
-    pointer-events: none;
     user-select: none;
 }
 
@@ -150,7 +135,6 @@ span {
     border: none;
     background-color: transparent;
     z-index: 100;
-    pointer-events: none;
     user-select: none;
 }
 
@@ -161,13 +145,11 @@ span {
     transform: translate(-50%, -50%);
     cursor: pointer;
     opacity: .4;
-    pointer-events: none;
     user-select: none;
 }
 
 #left-button-image {
     display: flex;
-    pointer-events: none;
     user-select: none;
 }
 
@@ -176,7 +158,6 @@ span {
     border: none;
     background-color: transparent;
     z-index: 100;
-    pointer-events: none;
     user-select: none;
 }
 
