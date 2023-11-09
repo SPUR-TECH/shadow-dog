@@ -1,3 +1,9 @@
+// Video 1 setup and player..... https://www.youtube.com/watch?v=c-1dBd1_G8A&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=12
+// Video 2 state control..... https://www.youtube.com/watch?v=ug-gdfGb7I8&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=13
+// Video 3 Enemies..... https://www.youtube.com/watch?v=lqNztI7BMf8&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=15
+// Video 4 Collision detection and extra states..... https://www.youtube.com/watch?v=6ppfyWdoH3c&list=PLYElE_rzEw_uryBrrzu2E626MY4zoXvx2&index=15
+//  Video 5 Splash on dive state and dust animation on collision..... https://www.youtube.com/watch?v=KICADKr_zeM&t=0s
+
 import {
     Player
 } from './player.js';
@@ -40,14 +46,14 @@ window.addEventListener('load', function () {
             this.onScreenEnemies = [];
             this.maxParticles = 80;
             this.enemyTimer = 0;
-            this.enemyInterval = 1500;
+            this.enemyInterval = 800;
             this.speed = 0;
             this.maxSpeed = 6;
             this.score = 0;
-            this.winningScore = 40;
+            this.winningScore = 60;
             this.fontColor = 'yellow';
             this.time = 0;
-            this.maxTime = 30000;
+            this.maxTime = 60000;
             this.gameOver = false;
             this.lives = 5;
             this.player.currentState = this.player.states[0];
@@ -58,6 +64,12 @@ window.addEventListener('load', function () {
             this.diggingZombieSound.src = './sounds/digging-zombie.mp3';
             this.backgroundSound = new Audio();
             this.backgroundSound.src = './sounds/background.mp3';
+            this.spiderSound = new Audio();
+            this.spiderSound.src = './sounds/spider.mp3';
+            this.ravenSound = new Audio();
+            this.ravenSound.src = './sounds/raven.mp3';
+            this.batSound = new Audio();
+            this.batSound.src = './sounds/bat.mp3';
 
             // Add a flag to track if the game has started
             this.gameStarted = false;
@@ -153,6 +165,7 @@ window.addEventListener('load', function () {
                 const randomValue = Math.random();
                 if (randomValue < 0.25) {
                     this.enemies.unshift(new GroundZombie(this));
+                    this.onScreenEnemies.push(this.enemies[0]);
                     this.diggingZombieSound.play();
                 } else if (randomValue < 0.5) {
                     this.enemies.unshift(new WalkingZombie(this));
@@ -160,10 +173,18 @@ window.addEventListener('load', function () {
                     this.zombieSound.play();
                 } else if (randomValue < 0.75) {
                     this.enemies.unshift(new ClimbingEnemy(this));
-                } else {
+                    this.onScreenEnemies.push(this.enemies[0]);
+                    this.spiderSound.play();
+                } else if (randomValue < 0.85) {
                     this.enemies.unshift(new BatEnemy(this));
+                    this.onScreenEnemies.push(this.enemies[0]);
+                    this.batSound.play();
+                } else if (randomValue < 0.95) {
                     this.enemies.unshift(new RavenEnemy(this));
+                    this.onScreenEnemies.push(this.enemies[0]);
+                    this.ravenSound.play();
                 }
+                console.log(this.enemies)
             }
         }
     }

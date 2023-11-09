@@ -16,7 +16,7 @@ export class FloatingMessage {
     }
     draw(context) {
         context.font = '20px Creepster';
-        context.fillStyle = 'black';
+        context.fillStyle = 'red';
         context.fillText(this.value, this.x, this.y);
         context.fillStyle = 'yellow';
         context.fillText(this.value, this.x - 2, this.y - 2);
