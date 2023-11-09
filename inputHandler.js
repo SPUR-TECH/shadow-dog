@@ -4,11 +4,11 @@ export class InputHandler {
         this.keys = [];
         this.rollButtonPressed = false;
 
-        const roll = document.getElementById("roll-button");
-        const jump = document.getElementById("up-button-image");
-        const right = document.getElementById("right-button-image");
-        const sit = document.getElementById("down-button-image");
-        const left = document.getElementById("left-button-image");
+        const roll = document.getElementById("roll");
+        const jump = document.getElementById("up");
+        const right = document.getElementById("right");
+        const sit = document.getElementById("down");
+        const left = document.getElementById("left");
 
         const handleTouchStart = (e, key) => {
             this.keys.push(key);
