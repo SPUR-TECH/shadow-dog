@@ -35,7 +35,7 @@ img {
     position: absolute;
     top: 50%;
     left: 90%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -150%);
 }
 
 #roll {
@@ -51,6 +51,24 @@ img {
     padding: 20px;
     padding-left: 10px;
     padding-right: 10px;
+    border-radius: 50%;
+    color: red;
+    font-size: 14px;
+}
+
+#bite {
+    position: absolute;
+    top: 220%;
+    cursor: pointer;
+    opacity: .6;
+}
+
+.bite {
+    position: absolute;
+    background-color: green;
+    padding: 20px;
+    padding-left: 14px;
+    padding-right: 14px;
     border-radius: 50%;
     color: red;
     font-size: 14px;

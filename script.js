@@ -5,6 +5,9 @@
 //  Video 5 Splash on dive state and dust animation on collision..... https://www.youtube.com/watch?v=KICADKr_zeM&t=0s
 
 import {
+    states
+} from './playerStates.js';
+import {
     Player
 } from './player.js';
 import {
@@ -51,6 +54,9 @@ window.addEventListener('load', function () {
             this.maxSpeed = 6;
             this.score = 0;
             this.winningScore = 60;
+            this.energy = 0;
+            this.maxEnergy = 10;
+            this.energyIncreaseTimer = 0;
             this.fontColor = 'yellow';
             this.time = 0;
             this.maxTime = 60000;
@@ -83,7 +89,7 @@ window.addEventListener('load', function () {
 
                     if (this.gameOver) {
                         // Stop the background music if the game is over
-                        this.backgroundSound.pause();
+                        this.backgroundSound.stop();
                     }
                 }
             });
@@ -92,7 +98,7 @@ window.addEventListener('load', function () {
         update(deltaTime) {
             if (this.gameOver) {
                 // Stop the background music if the game is over
-                this.backgroundSound.pause();
+                this.backgroundSound.stop();
             }
 
             if (!this.gameStarted) {
@@ -104,6 +110,37 @@ window.addEventListener('load', function () {
             if (this.time > this.maxTime) this.gameOver = true;
             this.background.update();
             this.player.update(this.input.keys, deltaTime);
+
+
+
+            // Decrease energy every second when rolling is active
+            if (this.player.isRolling()) {
+                this.energyDecreaseTimer += deltaTime;
+                if (this.energyDecreaseTimer >= 1000) {
+                    this.energyDecreaseTimer -= 1000; // Reset the timer
+                    if (this.energy > 0) {
+                        this.energy--;
+                    } else {
+                        // Stop rolling if energy is 0
+                        this.player.setState(states.RUNNING, 1);
+                    }
+
+                }
+                // Reset the energy increase timer when rolling
+                this.energyIncreaseTimer = 0;
+            } else {
+                // Reset the energy decrease timer when not rolling
+                this.energyDecreaseTimer = 0;
+
+                this.energyIncreaseTimer += deltaTime;
+                // Increase energy every 3 seconds
+                if (this.energyIncreaseTimer >= 3000) {
+                    this.energyIncreaseTimer -= 3000; // Reset the timer
+                    if (this.energy < this.maxEnergy) this.energy++;
+                }
+            }
+
+
 
             if (this.enemyTimer > this.enemyInterval) {
                 this.addEnemy();
@@ -184,7 +221,6 @@ window.addEventListener('load', function () {
                     this.onScreenEnemies.push(this.enemies[0]);
                     this.ravenSound.play();
                 }
-                console.log(this.enemies)
             }
         }
     }
@@ -197,12 +233,11 @@ window.addEventListener('load', function () {
         let deltaTime = timeStamp - lastTime;
         lastTime = timeStamp;
         game.update(deltaTime);
-        deltaTime -= lastTime;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         game.draw(ctx);
+        game.UI.draw(ctx); // Draw the UI after clearing the canvas
 
         if (!game.gameOver) requestAnimationFrame(updateLoop);
     }
-
     updateLoop(0);
 });

@@ -44,11 +44,16 @@ export class Player {
         this.frameInterval = 1000 / this.fps;
         this.speed = 0;
         this.maxSpeed = 10;
-        this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game), new Diving(this.game), new Hit(this.game)]; // new Dead(this.game)
+        this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game), new Diving(this.game), new Hit(this.game), ]; // new Dead(this.game)
         this.currentState = null;
         this.jumpSound = new Audio();
         this.jumpSound.src = './sounds/boing.mp3';
     }
+
+    isRolling() {
+        return this.currentState instanceof Rolling;
+    }
+
     update(input, deltaTime) {
         this.checkCollisions();
         this.currentState.handleInput(input);

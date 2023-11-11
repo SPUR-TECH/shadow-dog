@@ -21,9 +21,16 @@ export class UI {
         context.fillStyle = 'yellow';
         context.fillText('Time: ' + (this.game.time * 0.001).toFixed(1), 24, 84);
 
+        // Energy
+        context.font = this.fontSize * 0.8 + 'px ' + this.fontFamily;
+        context.fillStyle = 'red';
+        context.fillText('Energy: ' + this.game.energy, 20, 110);
+        context.fillStyle = 'yellow';
+        context.fillText('Energy: ' + this.game.energy, 24, 114);
+
         // Lives
         for (let i = 0; i < this.game.lives; i++) {
-            context.drawImage(this.liveImage, 30 * i + 20, 95, 30, 30);
+            context.drawImage(this.liveImage, 30 * i + 20, 130, 30, 30);
         }
 
         // Game over message
