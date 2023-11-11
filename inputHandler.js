@@ -24,6 +24,20 @@ export class InputHandler {
             }
         };
 
+        document.querySelector('#startButton').addEventListener('click', () => {
+            if (!this.game.gameStarted) {
+                // Start the game and the timer
+                this.game.gameStarted = true;
+
+                document.querySelector('#startButton').style.display = 'none';
+
+                if (this.game.gameOver) {
+                    // Stop the background music if the game is over
+                    this.game.backgroundSound.stop();
+                }
+            }
+        });
+
         roll.addEventListener("touchstart", (e) => handleTouchStart(e, 'Enter'));
         roll.addEventListener("touchend", () => handleTouchEnd('Enter'));
         roll.addEventListener("touchcancel", () => handleTouchEnd('Enter'));

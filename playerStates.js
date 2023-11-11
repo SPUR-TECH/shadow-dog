@@ -13,7 +13,6 @@ export const states = {
     DIVING: 5,
     HIT: 6,
     DEAD: 7,
-
 };
 
 export class State {
@@ -171,6 +170,27 @@ export class Hit extends State {
 
         } else if (this.game.player.frameX >= 10 && !this.game.player.onGround()) {
             this.game.player.setState(states.FALLING, 1);
+        }
+    }
+}
+
+export class Dead extends State {
+    constructor(game) {
+        super('DEAD', game);
+    }
+    enter() {
+        this.game.player.frameX = 0;
+        this.game.player.maxFrame = 11;
+        this.game.player.frameY = 8;
+    }
+    handleInput(input) {
+
+        if (this.game.player.frameX >= 11 && this.game.player.onGround()) {
+            this.game.player.setState(states.DEAD, 1);
+
+        } else if (this.game.player.frameX >= 11 && !this.game.player.onGround()) {
+            this.game.player.setState(states.FALLING, 1);
+            this.game.player.setState(states.DEAD, 1);
         }
     }
 }

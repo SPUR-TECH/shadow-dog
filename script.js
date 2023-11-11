@@ -79,26 +79,12 @@ window.addEventListener('load', function () {
 
             // Add a flag to track if the game has started
             this.gameStarted = false;
-
-            document.querySelector('#startButton').addEventListener('click', () => {
-                if (!this.gameStarted) {
-                    // Start the game and the timer
-                    this.gameStarted = true;
-
-                    document.querySelector('#startButton').style.display = 'none';
-
-                    if (this.gameOver) {
-                        // Stop the background music if the game is over
-                        this.backgroundSound.stop();
-                    }
-                }
-            });
         }
 
         update(deltaTime) {
             if (this.gameOver) {
                 // Stop the background music if the game is over
-                this.backgroundSound.stop();
+                this.backgroundSound.pause();
             }
 
             if (!this.gameStarted) {
@@ -139,8 +125,6 @@ window.addEventListener('load', function () {
                     if (this.energy < this.maxEnergy) this.energy++;
                 }
             }
-
-
 
             if (this.enemyTimer > this.enemyInterval) {
                 this.addEnemy();

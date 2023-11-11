@@ -1,4 +1,4 @@
-export class CollisionAnimation {
+export class DiveAnimation {
     constructor(game, x, y) {
         this.game = game;
         this.image = document.getElementById('boom')

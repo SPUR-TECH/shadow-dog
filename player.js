@@ -1,4 +1,7 @@
 import {
+    states
+} from './playerStates.js';
+import {
     Sitting,
     Running,
     Jumping,
@@ -6,11 +9,11 @@ import {
     Rolling,
     Diving,
     Hit,
-    // Dead
+    Dead
 } from './playerStates.js';
 import {
-    CollisionAnimation
-} from './collision-animation.js'
+    DiveAnimation
+} from './dive-animation.js'
 import {
     FloatingMessage
 } from './floating-messages.js'
@@ -44,7 +47,7 @@ export class Player {
         this.frameInterval = 1000 / this.fps;
         this.speed = 0;
         this.maxSpeed = 10;
-        this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game), new Diving(this.game), new Hit(this.game), ]; // new Dead(this.game)
+        this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game), new Diving(this.game), new Hit(this.game), new Dead(this.game)];
         this.currentState = null;
         this.jumpSound = new Audio();
         this.jumpSound.src = './sounds/boing.mp3';
@@ -56,7 +59,15 @@ export class Player {
 
     update(input, deltaTime) {
         this.checkCollisions();
-        this.currentState.handleInput(input);
+        if (this.game.lives <= 0 && !this.game.gameOver) {
+            setTimeout(() => {
+                this.setState(states.DEAD, 1);
+                this.game.gameOver = true;
+            }, 700);
+        } else {
+            this.currentState.handleInput(input);
+        }
+
 
         // Horizontal movement
         this.x += this.speed;
@@ -97,7 +108,33 @@ export class Player {
         // ctx.beginPath()
         // ctx.arc(this.x + this.width / 2, this.y + this.height / 2 + 20, this.width / 3, 0, Math.PI * 2)
         // ctx.stroke()
-        ctx.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
+        if (this.game.gameOver && this.currentState instanceof Dead) {
+            // Draw the last frame of the Dead state when the game is over
+            ctx.drawImage(
+                this.image,
+                this.states.findIndex((state) => state instanceof Dead) * this.width,
+                this.frameY * this.height,
+                this.width,
+                this.height,
+                this.x,
+                this.y,
+                this.width,
+                this.height
+            );
+        } else {
+            // Draw the current frame based on the animation state
+            ctx.drawImage(
+                this.image,
+                this.frameX * this.width,
+                this.frameY * this.height,
+                this.width,
+                this.height,
+                this.x,
+                this.y,
+                this.width,
+                this.height
+            );
+        }
     }
     onGround() {
         return this.y >= this.game.height - this.height - this.game.groundMargin;
@@ -117,7 +154,7 @@ export class Player {
                 enemy.markedForDeletion = true;
                 audio.hit.play();
 
-                this.game.collisions.push(new CollisionAnimation(this.game, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5));
+                this.game.collisions.push(new DiveAnimation(this.game, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5));
 
                 if (this.currentState === this.states[4] || this.currentState === this.states[5]) {
                     this.game.score++;
@@ -127,7 +164,9 @@ export class Player {
                     this.game.score -= 5;
                     this.game.lives--;
                     audio.yelp.play();
-                    if (this.game.lives <= 0) this.game.gameOver = true;
+                    if (this.game.lives <= 0) {
+                        this.setState(7, 0);
+                    }
                 }
             } else {
                 // No collision
