@@ -45,19 +45,32 @@ export class UI {
                 context.fillText('Sweet !!', this.game.width * 0.5 + 8, this.game.height * 0.5 - 16);
                 context.font = this.fontSize * 1.5 + 'px ' + this.fontFamily;
                 context.fillStyle = 'black'
-                context.fillText('You did it congratulations !!', this.game.width * 0.5 + 4, this.game.height * 0.5 + 30);
+                context.fillText('Well done !!', this.game.width * 0.5, this.game.height * 0.5 + 130);
                 context.fillStyle = 'red'
-                context.fillText('You did it congratulations !!', this.game.width * 0.5 + 4, this.game.height * 0.5 + 34);
+                context.fillText('Well done !!', this.game.width * 0.5 + 4, this.game.height * 0.5 + 134);
+
+                context.font = this.fontSize * 2.5 + 'px ' + this.fontFamily;
+                context.fillStyle = 'red'
+                context.fillText('Your score is: ' + '~ ' + this.game.score + ' ~', this.game.width * 0.5 + 4, this.game.height * 0.5 + 70);
+                context.fillStyle = 'yellow'
+                context.fillText('Your score is: ' + '~ ' + this.game.score + ' ~', this.game.width * 0.5 + 4, this.game.height * 0.5 + 76);
             } else {
                 context.fillStyle = 'black'
                 context.fillText('Unlucky !!', this.game.width * 0.5, this.game.height * 0.5 - 22);
                 context.fillStyle = 'red'
                 context.fillText('Unlucky !!', this.game.width * 0.5 + 8, this.game.height * 0.5 - 16);
                 context.font = this.fontSize * 1.5 + 'px ' + this.fontFamily;
+
                 context.fillStyle = 'black'
-                context.fillText('Better luck next time !!', this.game.width * 0.5, this.game.height * 0.5 + 30);
+                context.fillText('Better luck next time !!', this.game.width * 0.5, this.game.height * 0.5 + 130);
                 context.fillStyle = 'red'
-                context.fillText('Better luck next time !!', this.game.width * 0.5 + 4, this.game.height * 0.5 + 34);
+                context.fillText('Better luck next time !!', this.game.width * 0.5 + 4, this.game.height * 0.5 + 134);
+
+                context.font = this.fontSize * 2.5 + 'px ' + this.fontFamily;
+                context.fillStyle = 'red'
+                context.fillText('Your score was only: ' + '~ ' + this.game.score + ' ~', this.game.width * 0.5 + 4, this.game.height * 0.5 + 70);
+                context.fillStyle = 'yellow'
+                context.fillText('Your score was only: ' + '~ ' + this.game.score + ' ~', this.game.width * 0.5 + 4, this.game.height * 0.5 + 76);
             }
         }
     }

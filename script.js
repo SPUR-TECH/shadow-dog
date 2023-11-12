@@ -53,7 +53,7 @@ window.addEventListener('load', function () {
             this.speed = 0;
             this.maxSpeed = 6;
             this.score = 0;
-            this.winningScore = 60;
+            this.winningScore = 1;
             this.energy = 0;
             this.maxEnergy = 10;
             this.energyIncreaseTimer = 0;

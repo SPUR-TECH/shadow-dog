@@ -196,6 +196,23 @@ img {
     cursor: pointer;
 }
 
+#restartButton {
+    display: none;
+    position: absolute;
+    font-size: 20px;
+    padding: 5px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 110;
+    border-radius: 50px;
+    background-color: blue;
+    color: yellow;
+    font-weight: 800;
+    text-shadow: 0 .2rem .2rem rgba(0, 0, 0, .9);
+    cursor: pointer;
+}
+
 @media (min-width: 999px) {
 
     #button-div {
