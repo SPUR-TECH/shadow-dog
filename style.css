@@ -5,10 +5,16 @@
 }
 
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: black;
-    touch-action: pan-y;
-    touch-action: pan-x;
+    touch-action: none;
     user-select: none;
+}
+
+#turn-phone {
+    display: none;
 }
 
 #canvas1 {
@@ -22,8 +28,7 @@ body {
     max-width: 100%;
     max-height: 100%;
     font-family: 'Creepster', cursive;
-    touch-action: pan-y;
-    touch-action: pan-x;
+    touch-action: none;
     user-select: none;
 }
 
@@ -192,6 +197,42 @@ img {
 }
 
 @media (min-width: 999px) {
+
+    #button-div {
+        display: none;
+    }
+
+    #power-button-div {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    #top-arrow img {
+        display: flex;
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        top: 8%;
+        left: 30%;
+        z-index: 100;
+    }
+
+    #turn-phone {
+        display: flex;
+        margin-top: 130px;
+        margin-left: 20px;
+    }
+
+    #bottom-arrow img {
+        display: flex;
+        height: 50px;
+        width: 50px;
+        margin-top: 10px;
+        margin-left: 120px;
+        z-index: 100;
+    }
+
     #button-div {
         display: none;
     }
