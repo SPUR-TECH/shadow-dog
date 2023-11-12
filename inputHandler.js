@@ -6,21 +6,41 @@ export class InputHandler {
 
         const roll = document.getElementById("roll");
         const jump = document.getElementById("up");
+        const forwardJump = document.getElementById("up-right");
+        const backwardJump = document.getElementById("left-up");
         const right = document.getElementById("right");
         const sit = document.getElementById("down");
         const left = document.getElementById("left");
 
-        const handleTouchStart = (e, key) => {
-            this.keys.push(key);
-            if (key === 'Enter') {
-                this.rollButtonPressed = true;
+        const handleTouchStart = (e, keys) => {
+            if (Array.isArray(keys)) {
+                keys.forEach(key => {
+                    this.keys.push(key);
+                    if (key === 'Enter') {
+                        this.rollButtonPressed = true;
+                    }
+                });
+            } else {
+                this.keys.push(keys);
+                if (keys === 'Enter') {
+                    this.rollButtonPressed = true;
+                }
             }
         };
 
-        const handleTouchEnd = (key) => {
-            this.keys.splice(this.keys.indexOf(key), 1);
-            if (key === 'Enter') {
-                this.rollButtonPressed = false;
+        const handleTouchEnd = (keys) => {
+            if (Array.isArray(keys)) {
+                keys.forEach(key => {
+                    this.keys.splice(this.keys.indexOf(key), 1);
+                    if (key === 'Enter') {
+                        this.rollButtonPressed = false;
+                    }
+                });
+            } else {
+                this.keys.splice(this.keys.indexOf(keys), 1);
+                if (keys === 'Enter') {
+                    this.rollButtonPressed = false;
+                }
             }
         };
 
@@ -45,6 +65,15 @@ export class InputHandler {
         jump.addEventListener("touchstart", (e) => handleTouchStart(e, 'ArrowUp'));
         jump.addEventListener("touchend", () => handleTouchEnd('ArrowUp'));
         jump.addEventListener("touchcancel", () => handleTouchEnd('ArrowUp'));
+
+        forwardJump.addEventListener("touchstart", (e) => handleTouchStart(e, ['ArrowUp', 'ArrowRight']));
+        forwardJump.addEventListener("touchend", () => handleTouchEnd(['ArrowUp', 'ArrowRight']));
+        forwardJump.addEventListener("touchcancel", () => handleTouchEnd(['ArrowUp', 'ArrowRight']));
+
+
+        backwardJump.addEventListener("touchstart", (e) => handleTouchStart(e, ['ArrowUp', 'ArrowLeft']));
+        backwardJump.addEventListener("touchend", () => handleTouchEnd(['ArrowUp', 'ArrowLeft']));
+        backwardJump.addEventListener("touchcancel", () => handleTouchEnd(['ArrowUp', 'ArrowLeft']));
 
         right.addEventListener("touchstart", (e) => handleTouchStart(e, 'ArrowRight'));
         right.addEventListener("touchend", () => handleTouchEnd('ArrowRight'));
