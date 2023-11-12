@@ -76,19 +76,53 @@ window.addEventListener('load', function () {
             this.ravenSound.src = './sounds/raven.mp3';
             this.batSound = new Audio();
             this.batSound.src = './sounds/bat.mp3';
-
-            // Add a flag to track if the game has started
             this.gameStarted = false;
+        }
+
+        resetGame() {
+            this.gameOver = false;
+            this.gameStarted = true;
+            this.score = 0;
+            this.time = 0;
+            this.energy = 0;
+            this.lives = 5;
+
+            this.groundMargin = 70;
+            this.background = new Background(this);
+            this.player = new Player(this);
+            this.input = new InputHandler(this);
+            this.UI = new UI(this);
+            this.enemies = [];
+            this.particles = [];
+            this.collisions = [];
+            this.floatingMessages = [];
+            this.onScreenEnemies = [];
+            this.maxParticles = 80;
+            this.enemyTimer = 0;
+            this.enemyInterval = 800;
+            this.speed = 0;
+            this.maxSpeed = 6;
+            this.energyIncreaseTimer = 0;
+            this.fontColor = 'yellow';
+
+            this.player.currentState = this.player.states[0];
+            this.player.currentState.enter();
+
+            this.input = new InputHandler(this);
+            this.UI = new UI(this);
+
+            document.querySelector('#restartButton').style.display = 'none';
+
+            updateLoop(0);
         }
 
         update(deltaTime) {
             if (this.gameOver) {
-                // Stop the background music if the game is over
                 this.backgroundSound.pause();
             }
 
             if (!this.gameStarted) {
-                return; // Don't update the game if it hasn't started
+                return;
             }
             this.backgroundSound.play();
 
@@ -97,31 +131,22 @@ window.addEventListener('load', function () {
             this.background.update();
             this.player.update(this.input.keys, deltaTime);
 
-
-
-            // Decrease energy every second when rolling is active
             if (this.player.isRolling()) {
                 this.energyDecreaseTimer += deltaTime;
                 if (this.energyDecreaseTimer >= 1000) {
-                    this.energyDecreaseTimer -= 1000; // Reset the timer
+                    this.energyDecreaseTimer -= 1000;
                     if (this.energy > 0) {
                         this.energy--;
                     } else {
-                        // Stop rolling if energy is 0
                         this.player.setState(states.RUNNING, 1);
                     }
-
                 }
-                // Reset the energy increase timer when rolling
                 this.energyIncreaseTimer = 0;
             } else {
-                // Reset the energy decrease timer when not rolling
                 this.energyDecreaseTimer = 0;
-
                 this.energyIncreaseTimer += deltaTime;
-                // Increase energy every 3 seconds
                 if (this.energyIncreaseTimer >= 3000) {
-                    this.energyIncreaseTimer -= 3000; // Reset the timer
+                    this.energyIncreaseTimer -= 3000;
                     if (this.energy < this.maxEnergy) this.energy++;
                 }
             }
@@ -219,11 +244,16 @@ window.addEventListener('load', function () {
         game.update(deltaTime);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         game.draw(ctx);
-        game.UI.draw(ctx); // Draw the UI after clearing the canvas
+        game.UI.draw(ctx);
 
-        if (!game.gameOver) requestAnimationFrame(updateLoop);
-        if (game.gameOver)
+        if (!game.gameOver) {
+            requestAnimationFrame(updateLoop);
+        }
+
+        if (game.gameOver) {
             document.querySelector('#restartButton').style.display = 'flex';
+        }
     }
+
     updateLoop(0);
 });

@@ -46,31 +46,21 @@ export class InputHandler {
 
         document.querySelector('#startButton').addEventListener('click', () => {
             if (!this.game.gameStarted) {
-                // Start the game and the timer
                 this.game.gameStarted = true;
-
-                document.querySelector('#instructions-div').style.display = 'none';
                 document.querySelector('#startButton').style.display = 'none';
-
+                document.querySelector('#instructions-button').style.display = 'none';
                 if (this.game.gameOver) {
-                    // Stop the background music if the game is over
                     this.game.backgroundSound.stop();
                 }
             }
         });
 
         document.querySelector('#restartButton').addEventListener('click', () => {
-            if (!this.game.gameStarted) {
-                // Start the game and the timer
-                this.game.gameStarted = true;
-
+            if (this.game.gameOver) {
+                this.game.resetGame();
                 document.querySelector('#restartButton').style.display = 'none';
-
-                if (this.game.gameOver) {
-                    document.querySelector('#restartButton').style.display = 'flex';
-                    // Stop the background music if the game is over
-                    this.game.backgroundSound.stop();
-                }
+                document.querySelector('#instructions-button').style.display = 'none';
+                this.game.backgroundSound.play();
             }
         });
 
@@ -85,7 +75,6 @@ export class InputHandler {
         forwardJump.addEventListener("touchstart", (e) => handleTouchStart(e, ['ArrowUp', 'ArrowRight']));
         forwardJump.addEventListener("touchend", () => handleTouchEnd(['ArrowUp', 'ArrowRight']));
         forwardJump.addEventListener("touchcancel", () => handleTouchEnd(['ArrowUp', 'ArrowRight']));
-
 
         backwardJump.addEventListener("touchstart", (e) => handleTouchStart(e, ['ArrowUp', 'ArrowLeft']));
         backwardJump.addEventListener("touchend", () => handleTouchEnd(['ArrowUp', 'ArrowLeft']));

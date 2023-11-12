@@ -12,6 +12,7 @@
     <title>Shadow Dog</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="instructions.css">
     <link rel="shortcut icon" href="./images/favicon-shadow-dog.png">
 </head>
 
@@ -35,12 +36,10 @@
     </div>
 
     <canvas id="canvas1"></canvas>
-    <div id="instructions-div">
-        <h1 id="instructions-line-1">Score 60 points in 60 seconds</h1>
-        <h1 id="instructions-line-2">but beware, if you get hit</h1>
-        <h1 id="instructions-line-3">You lose 5 points !!</h1>
-        <h1 id="instructions-line-4">Good luck !!</h1>
-    </div>
+
+    <a id='instructions-button' href="instructions.html" target="_blank">
+        <p>Instructions</p>
+    </a>
 
     <button id="startButton">~ Press Start ~</button>
 
@@ -94,6 +93,9 @@
     <img id="layer9" src="./images/background/forrest-layer-5.png">
     <img id="layer10" src="./images/background/forrest-layer-5.png">
     <img id="layer11" src="./images/background/11-forrest-grass.png">
+
+    <!-- Instruction page background -->
+    <img id="instruction-background" src="./images/Combined background - Blue.png">
 
     <!-- Player image -->
     <img id="player" src="./images/shadow-dog-full.png">
