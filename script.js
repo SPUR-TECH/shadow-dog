@@ -59,7 +59,7 @@ window.addEventListener('load', function () {
             this.energyIncreaseTimer = 0;
             this.fontColor = 'yellow';
             this.time = 0;
-            this.maxTime = 20000;
+            this.maxTime = 60000;
             this.gameOver = false;
             this.lives = 5;
             this.player.currentState = this.player.states[0];
@@ -130,6 +130,16 @@ window.addEventListener('load', function () {
             if (this.time > this.maxTime) this.gameOver = true;
             this.background.update();
             this.player.update(this.input.keys, deltaTime);
+
+            if (this.player.currentState === this.player.states[0]) { // Assuming the sitting state is at index 4
+                this.energyIncreaseTimer += deltaTime;
+                if (this.energyIncreaseTimer >= 1000) {
+                    this.energyIncreaseTimer -= 1000;
+                    if (this.energy < this.maxEnergy) this.energy++;
+                }
+            } else {
+                this.energyIncreaseTimer = 0;
+            }
 
             if (this.player.isRolling()) {
                 this.energyDecreaseTimer += deltaTime;
