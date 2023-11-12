@@ -83,7 +83,7 @@ img {
     font-size: 14px;
 }
 
-#bite {
+/* #bite {
     position: absolute;
     top: 300%;
     cursor: pointer;
@@ -98,7 +98,7 @@ img {
     border-radius: 50%;
     color: red;
     font-size: 14px;
-}
+} */
 
 #controls-button-div {
     position: absolute;
