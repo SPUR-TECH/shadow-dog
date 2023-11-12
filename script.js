@@ -53,13 +53,13 @@ window.addEventListener('load', function () {
             this.speed = 0;
             this.maxSpeed = 6;
             this.score = 0;
-            this.winningScore = 1;
+            this.winningScore = 60;
             this.energy = 0;
             this.maxEnergy = 10;
             this.energyIncreaseTimer = 0;
             this.fontColor = 'yellow';
             this.time = 0;
-            this.maxTime = 60000;
+            this.maxTime = 20000;
             this.gameOver = false;
             this.lives = 5;
             this.player.currentState = this.player.states[0];
@@ -222,6 +222,8 @@ window.addEventListener('load', function () {
         game.UI.draw(ctx); // Draw the UI after clearing the canvas
 
         if (!game.gameOver) requestAnimationFrame(updateLoop);
+        if (game.gameOver)
+            document.querySelector('#restartButton').style.display = 'flex';
     }
     updateLoop(0);
 });
