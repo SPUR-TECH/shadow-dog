@@ -157,7 +157,7 @@ export class Player {
                 this.game.collisions.push(new DiveAnimation(this.game, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5));
 
                 if (this.currentState === this.states[4] || this.currentState === this.states[5]) {
-                    this.game.score++;
+                    this.game.score += 2;
                     this.game.floatingMessages.push(new FloatingMessage('+1', enemy.x, enemy.y, 150, 50));
                 } else {
                     this.setState(6, 0);
