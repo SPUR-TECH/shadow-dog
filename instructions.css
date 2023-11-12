@@ -19,6 +19,15 @@ body {
 }
 
 #instructions-div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
     font-family: 'Creepster', cursive;
     color: red;
     font-size: 20px;
@@ -29,36 +38,50 @@ body {
 #instructions-line-1 {
     position: absolute;
     top: 10%;
-    left: 40%;
-    transform: translate(-50% -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #instructions-line-2 {
     position: absolute;
     top: 20%;
-    left: 42%;
-    transform: translate(-50% -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #instructions-line-3 {
     position: absolute;
     top: 30%;
-    left: 45%;
-    transform: translate(-50% -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #instructions-line-4 {
     position: absolute;
     top: 40%;
-    left: 48%;
-    transform: translate(-50% -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#instructions-line-5 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#instructions-line-6 {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #back p {
     position: absolute;
-    top: 55%;
-    left: 52.5%;
-    transform: translate(-50%);
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-size: 20px;
     padding: 5px;
     padding-right: 10px;
@@ -73,4 +96,28 @@ body {
     text-shadow: 2px 2px 3px black;
     box-shadow: 8px 8px 18px black;
     cursor: pointer;
+}
+
+@media (max-width: 999px) {
+    #instructions-div {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 700px) {
+    #instructions-div {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 500px) {
+    #instructions-div {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    #instructions-div {
+        font-size: 10px;
+    }
 }

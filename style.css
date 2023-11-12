@@ -60,7 +60,7 @@ img {
 
 #power-button-div {
     position: absolute;
-    top: 45%;
+    top: 55%;
     right: 5%;
     transform: translate(-50%, -150%);
     opacity: .4;
