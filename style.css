@@ -1,299 +1,298 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    touch-action: none;
-    user-select: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+	touch-action: none;
+	user-select: none;
 }
 
 #instructions-button p {
-    display: flex;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%);
-    padding-right: 10px;
-    padding-left: 10px;
-    border-style: solid, 2px, 'black';
-    border-radius: 50px;
-    background-color: blue;
-    border-style: solid;
-    border-width: 2px;
-    border-color: red;
-    color: yellow;
-    font-size: 20px;
-    font-weight: 800;
-    text-shadow: 2px 2px 1px black;
-    box-shadow: 8px 8px 18px black;
-    cursor: pointer;
+	display: flex;
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	transform: translate(-50%);
+	padding-right: 10px;
+	padding-left: 10px;
+	border-style: solid, 2px, "black";
+	border-radius: 50px;
+	background-color: blue;
+	border-style: solid;
+	border-width: 2px;
+	border-color: red;
+	color: yellow;
+	font-size: 20px;
+	font-weight: 800;
+	text-shadow: 2px 2px 1px black;
+	box-shadow: 8px 8px 18px black;
+	cursor: pointer;
 }
 
 #turn-phone {
-    display: none;
+	display: none;
 }
 
 #canvas1 {
-    background-color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 5px solid blue;
-    border-radius: 20px;
-    max-width: 100%;
-    max-height: 100%;
-    font-family: 'Creepster', cursive;
-    touch-action: none;
-    user-select: none;
+	background-color: white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 5px solid blue;
+	border-radius: 20px;
+	max-width: 100%;
+	max-height: 100%;
+	font-family: "Creepster", cursive;
+	touch-action: none;
+	user-select: none;
 }
 
 img {
-    display: none;
+	display: none;
 }
 
 #power-button-div {
-    position: absolute;
-    top: 45%;
-    right: 5%;
-    transform: translate(-50%, -150%);
-    opacity: .4;
+	position: absolute;
+	top: 45%;
+	right: 5%;
+	transform: translate(-50%, -150%);
+	opacity: 0.4;
 }
 
 #roll {
-    position: relative;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
+	position: relative;
+	transform: translate(-50%, -50%);
+	cursor: pointer;
 }
 
 .roll {
-    position: absolute;
-    background-color: green;
-    padding: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 50%;
-    color: red;
-    font-size: 14px;
+	position: absolute;
+	background-color: green;
+	padding: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 50%;
+	color: red;
+	font-size: 14px;
 }
 
 #bite {
-    position: absolute;
-    top: 300%;
-    cursor: pointer;
+	position: absolute;
+	top: 300%;
+	cursor: pointer;
 }
 
 .bite {
-    position: absolute;
-    background-color: green;
-    padding: 20px;
-    padding-left: 14px;
-    padding-right: 14px;
-    border-radius: 50%;
-    color: red;
-    font-size: 14px;
+	position: absolute;
+	background-color: green;
+	padding: 20px;
+	padding-left: 14px;
+	padding-right: 14px;
+	border-radius: 50%;
+	color: red;
+	font-size: 14px;
 }
 
 #controls-button-div {
-    position: absolute;
-    top: 30%;
-    left: 10%;
-    height: 200px;
-    width: 200px;
-    background-color: transparent;
+	position: absolute;
+	top: 30%;
+	left: 10%;
+	height: 200px;
+	width: 200px;
+	background-color: transparent;
 }
 
 #up,
 #right,
 #down,
 #left {
-    position: relative;
-    background-color: green;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    opacity: .4;
+	position: relative;
+	background-color: green;
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	opacity: 0.4;
 }
 
 #up-span,
 #right-span,
 #down-span,
 #left-span {
-    position: absolute;
-    height: 15px;
-    width: 15px;
-    border-top: 3px solid white;
-    border-left: 3px solid white;
-    transform: rotate(45deg);
-    left: 18px;
-    top: 20px;
+	position: absolute;
+	height: 15px;
+	width: 15px;
+	border-top: 3px solid white;
+	border-left: 3px solid white;
+	transform: rotate(45deg);
+	left: 18px;
+	top: 20px;
 }
 
 .up {
-    position: absolute;
-    top: -8%;
-    left: 10%;
+	position: absolute;
+	top: -8%;
+	left: 10%;
 }
 
 #up-right {
-    position: absolute;
-    background-color: green;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    left: 110%;
-    top: 60%;
+	position: absolute;
+	background-color: green;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	left: 110%;
+	top: 60%;
 }
 
 .right {
-    transform: rotate(90deg);
-    position: absolute;
-    top: -5%;
-    left: 35%;
+	transform: rotate(90deg);
+	position: absolute;
+	top: -5%;
+	left: 35%;
 }
 
 #right-down {
-    position: absolute;
-    background-color: green;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    top: 50%;
-    left: 110%;
+	position: absolute;
+	background-color: green;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	top: 50%;
+	left: 110%;
 }
 
 .down {
-    transform: rotate(180deg);
-    position: absolute;
-    top: -2%;
-    left: 10%;
+	transform: rotate(180deg);
+	position: absolute;
+	top: -2%;
+	left: 10%;
 }
 
 #down-left {
-    position: absolute;
-    background-color: green;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    top: 60%;
-    left: 110%;
+	position: absolute;
+	background-color: green;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	top: 60%;
+	left: 110%;
 }
 
 .left {
-    transform: rotate(-90deg);
-    position: absolute;
-    top: -55%;
-    left: -15%;
+	transform: rotate(-90deg);
+	position: absolute;
+	top: -55%;
+	left: -15%;
 }
 
 #left-up {
-    position: absolute;
-    background-color: green;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    top: 55%;
-    left: 110%;
+	position: absolute;
+	background-color: green;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	top: 55%;
+	left: 110%;
 }
 
 #startButton {
-    /* display: none; */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%);
-    padding: 5px;
-    border-radius: 50px;
-    background-color: blue;
-    border-width: 2px;
-    border-color: red;
-    color: yellow;
-    font-size: 20px;
-    font-weight: 800;
-    text-shadow: 2px 2px 3px black;
-    box-shadow: 8px 8px 18px black;
-    cursor: pointer;
+	/* display: none; */
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%);
+	padding: 5px;
+	border-radius: 50px;
+	background-color: blue;
+	border-width: 2px;
+	border-color: red;
+	color: yellow;
+	font-size: 20px;
+	font-weight: 800;
+	text-shadow: 2px 2px 3px black;
+	box-shadow: 8px 8px 18px black;
+	cursor: pointer;
 }
 
 #restartButton {
-    display: none;
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%);
-    font-size: 20px;
-    padding: 2px;
-    border-radius: 50px;
-    background-color: blue;
-    border-width: 2px;
-    border-color: red;
-    color: yellow;
-    font-weight: 800;
-    text-shadow: 2px 2px 3px black;
-    box-shadow: 8px 8px 18px black;
-    cursor: pointer;
+	display: none;
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	transform: translate(-50%);
+	font-size: 20px;
+	padding: 2px;
+	border-radius: 50px;
+	background-color: blue;
+	border-width: 2px;
+	border-color: red;
+	color: yellow;
+	font-weight: 800;
+	text-shadow: 2px 2px 3px black;
+	box-shadow: 8px 8px 18px black;
+	cursor: pointer;
 }
 
 @media (min-width: 999px) {
+	#controls-button-div {
+		display: none;
+	}
 
-    #controls-button-div {
-        display: none;
-    }
-
-    #power-button-div {
-        display: none;
-    }
+	#power-button-div {
+		display: none;
+	}
 }
 
 @media (max-width: 500px) {
-    #top-arrow img {
-        display: flex;
-        position: absolute;
-        height: 50px;
-        width: 50px;
-        top: 8%;
-        left: 30%;
-        z-index: 100;
-    }
+	#top-arrow img {
+		display: flex;
+		position: absolute;
+		height: 50px;
+		width: 50px;
+		top: 8%;
+		left: 30%;
+		z-index: 100;
+	}
 
-    #turn-phone {
-        display: flex;
-        margin-top: 130px;
-        margin-left: 20px;
-    }
+	#turn-phone {
+		display: flex;
+		margin-top: 130px;
+		margin-left: 20px;
+	}
 
-    #bottom-arrow img {
-        display: flex;
-        height: 50px;
-        width: 50px;
-        margin-top: 10px;
-        margin-left: 120px;
-        z-index: 100;
-    }
+	#bottom-arrow img {
+		display: flex;
+		height: 50px;
+		width: 50px;
+		margin-top: 10px;
+		margin-left: 120px;
+		z-index: 100;
+	}
 
-    #controls-button-div {
-        display: none;
-    }
+	#controls-button-div {
+		display: none;
+	}
 
-    #power-button-div {
-        display: none;
-    }
+	#power-button-div {
+		display: none;
+	}
 
-    #startButton {
-        display: none;
-    }
+	#startButton {
+		display: none;
+	}
 
-    #restartButton {
-        display: none;
-    }
+	#restartButton {
+		display: none;
+	}
 
-    #instructions-button p {
-        display: none;
-    }
+	#instructions-button p {
+		display: none;
+	}
 }

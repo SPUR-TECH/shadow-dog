@@ -1,137 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Creepster&display=swap"
+			rel="stylesheet" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+		<title>Shadow Dog</title>
 
-    <title>Shadow Dog</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="instructions.css" />
+		<link rel="shortcut icon" href="./images/favicon-shadow-dog.png" />
+	</head>
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="instructions.css">
-    <link rel="shortcut icon" href="./images/favicon-shadow-dog.png">
-</head>
+	<body>
+		<div id="turn-phone-info">
+			<div id="top-arrow">
+				<img src="images/top-arrow1.png" alt="top arrow" />
+			</div>
 
-<body>
+			<h2 id="turn-phone" style="color: rgb(51, 218, 1)">TURN PHONE</h2>
 
-    <div id="turn-phone-info">
+			<div id="bottom-arrow">
+				<img src="images/bottom-arrow.png" alt="bottom arrow" />
+			</div>
+		</div>
 
-        <div id="top-arrow">
-            <img src="images/top-arrow1.png" alt="top arrow" />
-        </div>
+		<canvas id="canvas1"></canvas>
 
-        <h2 id="turn-phone" style="
-            color:rgb(51, 218, 1);
-            ">
-            TURN PHONE
-        </h2>
+		<a id="instructions-button" href="instructions.html">
+			<p>Instructions</p>
+		</a>
 
-        <div id="bottom-arrow">
-            <img src="images/bottom-arrow.png" alt="bottom arrow" />
-        </div>
-    </div>
+		<button id="startButton">~ Press Start ~</button>
 
-    <canvas id="canvas1"></canvas>
+		<button id="restartButton">~ Restart ~</button>
 
-    <a id='instructions-button' href="instructions.html">
-        <p>Instructions</p>
-    </a>
+		<!-- Direction buttons -->
+		<div id="controls-button-div">
+			<div id="up" class="up">
+				<span id="up-span"></span>
+				<span id="up-right"></span>
+			</div>
 
-    <button id="startButton">~ Press Start ~</button>
+			<div id="right" class="right">
+				<span id="right-span"></span>
+				<span id="right-down"></span>
+			</div>
 
-    <button id="restartButton">~ Restart ~</button>
+			<div id="down" class="down">
+				<span id="down-span"></span>
+				<span id="down-left"></span>
+			</div>
 
-    <!-- Direction buttons -->
-    <div id="controls-button-div">
-        <div id='up' class="up">
-            <span id="up-span"></span>
-            <span id="up-right"></span>
-        </div>
+			<div id="left" class="left">
+				<span id="left-span"></span>
+				<span id="left-up"></span>
+			</div>
+		</div>
 
-        <div id='right' class='right'>
-            <span id="right-span"></span>
-            <span id="right-down"></span>
-        </div>
+		<div id="power-button-div">
+			<div id="button-roll-div">
+				<div>
+					<span id="roll" class="roll"><b>ROLL</b></span>
+				</div>
+			</div>
+			<div id="button-bite-div">
+				<div>
+					<span id="bite" class="bite"><b>BITE</b></span>
+				</div>
+			</div>
+		</div>
 
-        <div id='down' class='down'>
-            <span id="down-span"></span>
-            <span id="down-left"></span>
-        </div>
+		<!-- Background layers -->
+		<img id="layer1" src="./images/background/10-Sky.png" />
+		<img id="layer2" src="./images/background/09-Forest.png" />
+		<img id="layer3" src="./images/background/forrest-layer-2.png" />
+		<img id="layer4" src="./images/background/07-Forest.png" />
+		<img id="layer5" src="./images/background/06-Forest.png" />
+		<img id="layer6" src="./images/background/05-Particles.png" />
+		<img id="layer7" src="./images/background/04-Forest.png" />
+		<img id="layer8" src="./images/background/forrest-layer-4.png" />
+		<img id="layer9" src="./images/background/forrest-layer-5.png" />
+		<img id="layer10" src="./images/background/forrest-layer-5.png" />
+		<img id="layer11" src="./images/background/11-forrest-grass.png" />
 
-        <div id='left' class='left'>
-            <span id="left-span"></span>
-            <span id="left-up"></span>
-        </div>
-    </div>
+		<!-- Instruction page background -->
+		<img
+			id="instruction-background"
+			src="./images/Combined background - Blue.png" />
 
-    <div id="power-button-div">
-        <div id="button-roll-div">
-            <div>
-                <span id="roll" class="roll"><b>ROLL</b></span>
-            </div>
-        </div>
-        <div id="button-bite-div">
-            <div>
-                <span id="bite" class="bite"><b>BITE</b></span>
-            </div>
-        </div>
-    </div>
+		<!-- Player image -->
+		<img id="player" src="./images/shadow-dog-full.png" />
 
-    <!-- Background layers -->
-    <img id="layer1" src="./images/background/10-Sky.png">
-    <img id="layer2" src="./images/background/09-Forest.png">
-    <img id="layer3" src="./images/background/forrest-layer-2.png">
-    <img id="layer4" src="./images/background/07-Forest.png">
-    <img id="layer5" src="./images/background/06-Forest.png">
-    <img id="layer6" src="./images/background/05-Particles.png">
-    <img id="layer7" src="./images/background/04-Forest.png">
-    <img id="layer8" src="./images/background/forrest-layer-4.png">
-    <img id="layer9" src="./images/background/forrest-layer-5.png">
-    <img id="layer10" src="./images/background/forrest-layer-5.png">
-    <img id="layer11" src="./images/background/11-forrest-grass.png">
+		<!-- Enemies -->
+		<img id="bat-3" src="./images/enemy-bat-3.png" />
+		<img id="raven" src="./images/enemy-raven.png" />
+		<img id="zombie" src="./images/enemy-zombie.png" />
+		<img id="spider" src="./images/enemy-spider-big.png" />
+		<img id="ground-zombie" src="./images/enemy-ground-zombie.png" />
 
-    <!-- Instruction page background -->
-    <img id="instruction-background" src="./images/Combined background - Blue.png">
+		<!-- Dust explosion -->
+		<img id="boom" src="./images/boom.png" />
 
-    <!-- Player image -->
-    <img id="player" src="./images/shadow-dog-full.png">
+		<!-- Fire particles -->
+		<img id="fire" src="./images/fire.png" />
 
-    <!-- Enemies -->
-    <img id="bat-3" src="./images/enemy-bat-3.png">
-    <img id="raven" src="./images/enemy-raven.png">
-    <img id="zombie" src="./images/enemy-zombie.png">
-    <img id="spider" src="./images/enemy-spider-big.png">
-    <img id="ground-zombie" src="./images/enemy-ground-zombie.png">
+		<!-- Lives -->
+		<img id="lives" src="./images/lives.png" />
 
-    <!-- Dust explosion -->
-    <img id="boom" src="./images/boom.png">
+		<!-- Sounds -->
+		<audio id="background" src="sounds/background.mp3"></audio>
+		<audio id="hit" src="sounds/splat.mp3"></audio>
+		<audio id="jump" src="sounds/boing.mp3"></audio>
+		<audio id="yelp" src="sounds/yelp.mp3"></audio>
+		<audio id="digging-zombie" src="sounds/digging-zombie.mp3"></audio>
+		<audio id="spider" src="sounds/spider.mp3"></audio>
+		<audio id="raven" src="sounds/raven.mp3"></audio>
+		<audio id="bat" src="sounds/bat.mp3"></audio>
+		<audio id="chomp" src="sounds/chomp.mp3"></audio>
 
-    <!-- Fire particles -->
-    <img id="fire" src="./images/fire.png">
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+			integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"></script>
 
-    <!-- Lives -->
-    <img id="lives" src="./images/lives.png">
-
-    <!-- Sounds -->
-    <audio id="background" src="sounds/background.mp3"></audio>
-    <audio id="hit" src="sounds/splat.mp3"></audio>
-    <audio id="jump" src="sounds/boing.mp3"></audio>
-    <audio id="yelp" src="sounds/yelp.mp3"></audio>
-    <audio id="digging-zombie" src="sounds/digging-zombie.mp3"></audio>
-    <audio id="spider" src="sounds/spider.mp3"></audio>
-    <audio id="raven" src="sounds/raven.mp3"></audio>
-    <audio id="bat" src="sounds/bat.mp3"></audio>
-    <audio id="chomp" src="sounds/chomp.mp3"></audio>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
-        integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script type="module" src="script.js"></script>
-</body>
-
+		<script type="module" src="script.js"></script>
+	</body>
 </html>
