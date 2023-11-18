@@ -20,10 +20,6 @@ const audio = {
 		src: "./sounds/splat.mp3",
 		loop: false,
 	}),
-	bite: new Howl({
-		src: "./sounds/chomp.mp3",
-		loop: false,
-	}),
 	yelp: new Howl({
 		src: "./sounds/yelp.mp3",
 		loop: false,
@@ -77,7 +73,6 @@ export class Player {
 			}, 900);
 		} else {
 			this.currentState.handleInput(input);
-			console.log("Input in Player:", input);
 		}
 
 		// Horizontal movement
@@ -189,8 +184,6 @@ export class Player {
 					this.game.floatingMessages.push(
 						new FloatingMessage("+2", enemy.x, enemy.y, 150, 50),
 					);
-				} else if (this.currentState == this.states[9]) {
-					audio.bite.play();
 				} else {
 					this.setState(7, 0);
 					this.game.score -= 5;

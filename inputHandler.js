@@ -1,4 +1,11 @@
 import { states } from "./playerStates.js";
+const audio = {
+	bite: new Howl({
+		src: "./sounds/chomp.mp3",
+		loop: false,
+	}),
+};
+
 export class InputHandler {
 	constructor(game) {
 		this.game = game;
@@ -21,7 +28,7 @@ export class InputHandler {
 					if (key === "Enter") {
 						this.rollButtonPressed = true;
 					} else if (key === "b") {
-						// Handle 'b' key, set player state to 'BITE'
+						audio.bite.play();
 						this.game.player.setState(states.BITE, 1);
 					}
 				});
@@ -32,6 +39,12 @@ export class InputHandler {
 				}
 			}
 		};
+
+		document.addEventListener("keydown", (event) => {
+			if (event.key.toLowerCase() === "b") {
+				audio.bite.play(); // Assuming "bite" is the key for the "chomp" sound
+			}
+		});
 
 		const handleTouchEnd = (keys) => {
 			if (Array.isArray(keys)) {
@@ -73,7 +86,10 @@ export class InputHandler {
 		roll.addEventListener("touchend", () => handleTouchEnd("Enter"));
 		roll.addEventListener("touchcancel", () => handleTouchEnd("Enter"));
 
-		bite.addEventListener("touchstart", (e) => handleTouchStart(e, "b"));
+		bite.addEventListener("touchstart", (e) => {
+			handleTouchStart(e, "b");
+			audio.bite.play();
+		});
 		bite.addEventListener("touchend", () => handleTouchEnd("b"));
 		bite.addEventListener("touchcancel", () => handleTouchEnd("b"));
 
