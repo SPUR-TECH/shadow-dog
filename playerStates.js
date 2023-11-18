@@ -31,18 +31,21 @@ export class Idle extends State {
         this.game.player.frameX = 0;
         this.game.player.maxFrame = 6;
         this.game.player.frameY = 0;
+        this.game.player.vy = 0;
     }
     handleInput(input) {
-        if (input.includes('ArrowLeft') || input.includes('ArrowRight')) {
-            this.game.player.setState(states.RUNNING, 1);
-        } else if (input.includes('ArrowDown')) {
-            this.game.player.setState(states.SITTING, 0);
-        } else if (input.includes('ArrowUp')) {
-            this.game.player.setState(states.JUMPING, 1);
-        } else if (input.includes('Enter') && this.game.energy > 1) {
-            this.game.player.setState(states.ROLLING, 2);
-        } else if (input.includes('b')) {
-            this.game.player.setState(states.BITE, 2);
+        if (this.game.player.onGround()) {
+            if (input.includes('ArrowLeft') || input.includes('ArrowRight')) {
+                this.game.player.setState(states.RUNNING, 1);
+            } else if (input.includes('ArrowDown')) {
+                this.game.player.setState(states.SITTING, 0);
+            } else if (input.includes('ArrowUp')) {
+                this.game.player.setState(states.JUMPING, 1);
+            } else if (input.includes('Enter') && this.game.energy > 1) {
+                this.game.player.setState(states.ROLLING, 2);
+            } else if (input.includes('b')) {
+                this.game.player.setState(states.BITE, 2);
+            }
         }
     }
 }
@@ -54,16 +57,19 @@ export class Sitting extends State {
         this.game.player.frameX = 0;
         this.game.player.maxFrame = 4;
         this.game.player.frameY = 5;
+        this.game.player.vy = 0;
     }
     handleInput(input) {
-        if (input.includes('ArrowLeft') || input.includes('ArrowRight')) {
-            this.game.player.setState(states.RUNNING, 1);
-        } else if (input.includes('ArrowUp')) {
-            this.game.player.setState(states.JUMPING, 1);
-        } else if (input.includes('Enter') && this.game.energy > 1) {
-            this.game.player.setState(states.ROLLING, 2);
-        } else if (input.includes('b')) {
-            this.game.player.setState(states.BITE, 2);
+        if (this.game.player.onGround()) {
+            if (input.includes('ArrowLeft') || input.includes('ArrowRight')) {
+                this.game.player.setState(states.RUNNING, 1);
+            } else if (input.includes('ArrowUp')) {
+                this.game.player.setState(states.JUMPING, 1);
+            } else if (input.includes('Enter') && this.game.energy > 1) {
+                this.game.player.setState(states.ROLLING, 2);
+            } else if (input.includes('b')) {
+                this.game.player.setState(states.BITE, 2);
+            }
         }
     }
 }

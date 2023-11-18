@@ -142,8 +142,8 @@ window.addEventListener('load', function () {
 
             if (this.player.isRolling()) {
                 this.energyDecreaseTimer += deltaTime;
-                if (this.energyDecreaseTimer >= 1000) {
-                    this.energyDecreaseTimer -= 1000;
+                if (this.energyDecreaseTimer >= 500) {
+                    this.energyDecreaseTimer -= 500;
                     if (this.energy > 0) {
                         this.energy--;
                     } else {
