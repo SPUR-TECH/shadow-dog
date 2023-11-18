@@ -36,8 +36,8 @@ body {
 	background-image: linear-gradient(rgb(64, 150, 221), black);
 	border-style: solid;
 	border-width: 5px;
-	border-color: red;
-	font-family: "Comic", cursive;
+	border-color: rgb(0, 0, 150);
+	font-family: "Indie Flower", cursive;
 	color: rgb(255, 196, 0);
 	font-size: 20px;
 	font-weight: 800;
@@ -54,7 +54,7 @@ body {
 	padding-right: 8px;
 	padding-left: 8px;
 	border-radius: 50px;
-	background-color: blue;
+	background-color: rgb(0, 0, 150);
 	border-style: solid;
 	border-width: 2px;
 	border-color: red;
