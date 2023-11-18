@@ -13,6 +13,7 @@ import {
 	ClimbingEnemy,
 	WalkingZombie,
 	GroundZombie,
+	GhostEnemy3,
 } from "./enemies.js";
 import { UI } from "./UI.js";
 import { Background } from "./background.js";
@@ -60,12 +61,16 @@ window.addEventListener("load", function () {
 			this.diggingZombieSound.src = "./sounds/digging-zombie.mp3";
 			this.backgroundSound = new Audio();
 			this.backgroundSound.src = "./sounds/background.mp3";
+			this.backgroundSound2 = new Audio();
+			this.backgroundSound2.src = "./sounds/background2.mp3";
 			this.spiderSound = new Audio();
 			this.spiderSound.src = "./sounds/spider.mp3";
 			this.ravenSound = new Audio();
 			this.ravenSound.src = "./sounds/raven.mp3";
 			this.batSound = new Audio();
 			this.batSound.src = "./sounds/bat.mp3";
+			this.ghostSound = new Audio();
+			this.ghostSound.src = "./sounds/ghost.mp3";
 			this.gameStarted = false;
 		}
 
@@ -108,12 +113,14 @@ window.addEventListener("load", function () {
 		update(deltaTime) {
 			if (this.gameOver) {
 				this.backgroundSound.pause();
+				this.backgroundSound2.pause();
 			}
 
 			if (!this.gameStarted) {
 				return;
 			}
 			this.backgroundSound.play();
+			this.backgroundSound2.play();
 
 			this.time += deltaTime;
 			if (this.time > this.maxTime) this.gameOver = true;
@@ -212,12 +219,19 @@ window.addEventListener("load", function () {
 		}
 
 		addEnemy() {
+			this.enemies.unshift(new GhostEnemy3(this));
+			this.onScreenEnemies.push(this.enemies[0]);
+			this.ghostSound.play();
 			if (this.speed > 0) {
 				const randomValue = Math.random();
 				if (randomValue < 0.25) {
 					this.enemies.unshift(new GroundZombie(this));
 					this.onScreenEnemies.push(this.enemies[0]);
 					this.diggingZombieSound.play();
+				} else if (randomValue < 0.35) {
+					this.enemies.unshift(new GhostEnemy3(this));
+					this.onScreenEnemies.push(this.enemies[0]);
+					this.ghostSound.play();
 				} else if (randomValue < 0.5) {
 					this.enemies.unshift(new WalkingZombie(this));
 					this.onScreenEnemies.push(this.enemies[0]);

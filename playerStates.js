@@ -40,7 +40,7 @@ export class Idle extends State {
 			} else if (input.includes("Enter") && this.game.energy > 1) {
 				this.game.player.setState(states.ROLLING, 2);
 			} else if (input.includes("b")) {
-				this.game.player.setState(states.BITE, 2);
+				this.game.player.setState(states.BITE, 1);
 			}
 		}
 	}
@@ -64,7 +64,7 @@ export class Sitting extends State {
 			} else if (input.includes("Enter") && this.game.energy > 1) {
 				this.game.player.setState(states.ROLLING, 2);
 			} else if (input.includes("b")) {
-				this.game.player.setState(states.BITE, 2);
+				this.game.player.setState(states.BITE, 1);
 			}
 		}
 	}
@@ -95,7 +95,7 @@ export class Running extends State {
 		} else if (input.includes("Enter") && this.game.energy > 1) {
 			this.game.player.setState(states.ROLLING, 2);
 		} else if (input.includes("b")) {
-			this.game.player.setState(states.BITE, 2);
+			this.game.player.setState(states.BITE, 1);
 		}
 	}
 }
@@ -119,7 +119,7 @@ export class Jumping extends State {
 		} else if (input.includes("ArrowDown")) {
 			this.game.player.setState(states.DIVING, 0);
 		} else if (input.includes("b")) {
-			this.game.player.setState(states.BITE, 2);
+			this.game.player.setState(states.BITE, 1);
 		}
 	}
 }
@@ -141,7 +141,7 @@ export class Falling extends State {
 		} else if (input.includes("ArrowDown")) {
 			this.game.player.setState(states.DIVING, 0);
 		} else if (input.includes("b")) {
-			this.game.player.setState(states.BITE, 2);
+			this.game.player.setState(states.BITE, 1);
 		}
 	}
 }
@@ -278,7 +278,7 @@ export class Bite extends State {
 		if (input.includes("b")) {
 			if (!this.biteTriggered) {
 				if (this.game.player.onGround) {
-					this.game.player.setState(states.BITE, 2);
+					this.game.player.setState(states.BITE, 1);
 				}
 				this.biteTriggered = true;
 			}

@@ -223,11 +223,12 @@ img {
 #restartButton {
 	display: none;
 	position: absolute;
-	top: 70%;
+	top: 75%;
 	left: 50%;
 	transform: translate(-50%);
 	font-size: 20px;
-	padding: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
 	border-radius: 50px;
 	background-color: rgb(0, 0, 150);
 	border-width: 2px;
