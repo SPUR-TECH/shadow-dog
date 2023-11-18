@@ -130,14 +130,14 @@ window.addEventListener('load', function () {
             this.background.update();
             this.player.update(this.input.keys, deltaTime);
 
-            if (this.player.currentState === this.player.states[0]) {
+            if (this.player.currentState === this.player.states[1]) {
                 this.energyIncreaseTimer += deltaTime;
-                if (this.energyIncreaseTimer >= 1000) {
-                    this.energyIncreaseTimer -= 1000;
+                if (this.energyIncreaseTimer >= 2000) {
+                    this.energyIncreaseTimer -= 2000;
                     if (this.energy < this.maxEnergy) this.energy++;
                 }
             } else {
-                this.energyIncreaseTimer = 0;
+                this.energyIncreaseTimer++;
             }
 
             if (this.player.isRolling()) {

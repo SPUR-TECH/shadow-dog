@@ -35,12 +35,14 @@ export class Idle extends State {
     handleInput(input) {
         if (input.includes('ArrowLeft') || input.includes('ArrowRight')) {
             this.game.player.setState(states.RUNNING, 1);
+        } else if (input.includes('ArrowDown')) {
+            this.game.player.setState(states.SITTING, 0);
         } else if (input.includes('ArrowUp')) {
             this.game.player.setState(states.JUMPING, 1);
         } else if (input.includes('Enter') && this.game.energy > 1) {
             this.game.player.setState(states.ROLLING, 2);
         } else if (input.includes('b')) {
-            this.game.player.setState(states.BITE, 1);
+            this.game.player.setState(states.BITE, 2);
         }
     }
 }
@@ -61,7 +63,7 @@ export class Sitting extends State {
         } else if (input.includes('Enter') && this.game.energy > 1) {
             this.game.player.setState(states.ROLLING, 2);
         } else if (input.includes('b')) {
-            this.game.player.setState(states.BITE, 1);
+            this.game.player.setState(states.BITE, 2);
         }
     }
 }
@@ -85,7 +87,7 @@ export class Running extends State {
         } else if (input.includes('Enter') && this.game.energy > 1) {
             this.game.player.setState(states.ROLLING, 2);
         } else if (input.includes('b')) {
-            this.game.player.setState(states.BITE, 1);
+            this.game.player.setState(states.BITE, 2);
         }
     }
 }
@@ -109,7 +111,7 @@ export class Jumping extends State {
         } else if (input.includes('ArrowDown')) {
             this.game.player.setState(states.DIVING, 0);
         } else if (input.includes('b')) {
-            this.game.player.setState(states.BITE, 1);
+            this.game.player.setState(states.BITE, 2);
         }
     }
 }
@@ -131,7 +133,7 @@ export class Falling extends State {
         } else if (input.includes('ArrowDown')) {
             this.game.player.setState(states.DIVING, 0);
         } else if (input.includes('b')) {
-            this.game.player.setState(states.BITE, 1);
+            this.game.player.setState(states.BITE, 2);
         }
     }
 }
