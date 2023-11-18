@@ -28,64 +28,31 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    font-family: 'Creepster', cursive;
-    color: red;
+}
+
+#instructions {
+    padding: 20px;
+    border-radius: 30px;
+    background-image: linear-gradient(rgb(64, 150, 221), black);
+    border-style: solid;
+    border-width: 5px;
+    border-color: red;
+    font-family: 'Comic', cursive;
+    color: rgb(255, 196, 0);
     font-size: 20px;
     font-weight: 800;
-    text-shadow: 2px 2px 3px yellow;
-}
-
-#instructions-line-1 {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#instructions-line-2 {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#instructions-line-3 {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#instructions-line-4 {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#instructions-line-5 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#instructions-line-6 {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    text-shadow: 4px 4px 8px black;
+    box-shadow: 8px 8px 28px black;
 }
 
 #back p {
     position: absolute;
-    top: 75%;
+    top: 85%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 20px;
-    padding: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: 8px;
+    padding-left: 8px;
     border-radius: 50px;
     background-color: blue;
     border-style: solid;
@@ -99,25 +66,25 @@ body {
 }
 
 @media (max-width: 999px) {
-    #instructions-div {
+    #instructions {
         font-size: 15px;
     }
 }
 
 @media (max-width: 700px) {
-    #instructions-div {
+    #instructions {
         font-size: 13px;
     }
 }
 
 @media (max-width: 500px) {
-    #instructions-div {
+    #instructions {
         font-size: 12px;
     }
 }
 
 @media (max-width: 400px) {
-    #instructions-div {
+    #instructions {
         font-size: 10px;
     }
 }
