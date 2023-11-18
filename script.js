@@ -103,7 +103,6 @@ window.addEventListener('load', function () {
             this.speed = 0;
             this.maxSpeed = 6;
             this.energyIncreaseTimer = 0;
-            this.fontColor = 'yellow';
 
             this.player.currentState = this.player.states[0];
             this.player.currentState.enter();
@@ -131,7 +130,7 @@ window.addEventListener('load', function () {
             this.background.update();
             this.player.update(this.input.keys, deltaTime);
 
-            if (this.player.currentState === this.player.states[0]) { // Assuming the sitting state is at index 4
+            if (this.player.currentState === this.player.states[0]) {
                 this.energyIncreaseTimer += deltaTime;
                 if (this.energyIncreaseTimer >= 1000) {
                     this.energyIncreaseTimer -= 1000;

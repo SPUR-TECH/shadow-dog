@@ -16,7 +16,7 @@ body {
 #instructions-button p {
     display: flex;
     position: absolute;
-    top: 40%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%);
     padding-right: 10px;
@@ -60,7 +60,7 @@ img {
 
 #power-button-div {
     position: absolute;
-    top: 55%;
+    top: 45%;
     right: 5%;
     transform: translate(-50%, -150%);
     opacity: .4;
@@ -83,7 +83,7 @@ img {
     font-size: 14px;
 }
 
-/* #bite {
+#bite {
     position: absolute;
     top: 300%;
     cursor: pointer;
@@ -98,7 +98,7 @@ img {
     border-radius: 50%;
     color: red;
     font-size: 14px;
-} */
+}
 
 #controls-button-div {
     position: absolute;
@@ -251,7 +251,7 @@ img {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     #top-arrow img {
         display: flex;
         position: absolute;

@@ -1,3 +1,6 @@
+import {
+    states
+} from './playerStates.js';
 export class InputHandler {
     constructor(game) {
         this.game = game;
@@ -5,6 +8,7 @@ export class InputHandler {
         this.rollButtonPressed = false;
 
         const roll = document.getElementById("roll");
+        const bite = document.getElementById("bite");
         const jump = document.getElementById("up");
         const forwardJump = document.getElementById("up-right");
         const backwardJump = document.getElementById("left-up");
@@ -18,6 +22,9 @@ export class InputHandler {
                     this.keys.push(key);
                     if (key === 'Enter') {
                         this.rollButtonPressed = true;
+                    } else if (key === 'b') {
+                        // Handle 'b' key, set player state to 'BITE'
+                        this.game.player.setState(states.BITE, 1);
                     }
                 });
             } else {
@@ -68,6 +75,10 @@ export class InputHandler {
         roll.addEventListener("touchend", () => handleTouchEnd('Enter'));
         roll.addEventListener("touchcancel", () => handleTouchEnd('Enter'));
 
+        bite.addEventListener("touchstart", (e) => handleTouchStart(e, 'b'));
+        bite.addEventListener("touchend", () => handleTouchEnd('b'));
+        bite.addEventListener("touchcancel", () => handleTouchEnd('b'));
+
         jump.addEventListener("touchstart", (e) => handleTouchStart(e, 'ArrowUp'));
         jump.addEventListener("touchend", () => handleTouchEnd('ArrowUp'));
         jump.addEventListener("touchcancel", () => handleTouchEnd('ArrowUp'));
@@ -93,7 +104,7 @@ export class InputHandler {
         left.addEventListener("touchcancel", () => handleTouchEnd('ArrowLeft'));
 
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Enter') {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Enter' || e.key === 'b') {
                 if (this.keys.indexOf(e.key) === -1) {
                     this.keys.push(e.key);
                 }
@@ -101,7 +112,7 @@ export class InputHandler {
         });
 
         window.addEventListener('keyup', (e) => {
-            if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Enter') {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Enter' || e.key === 'b') {
                 this.keys.splice(this.keys.indexOf(e.key), 1);
             }
         });

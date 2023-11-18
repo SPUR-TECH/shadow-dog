@@ -5,20 +5,43 @@ import {
 } from './particles.js'
 
 export const states = {
-    SITTING: 0,
-    RUNNING: 1,
-    JUMPING: 2,
-    FALLING: 3,
-    ROLLING: 4,
-    DIVING: 5,
-    HIT: 6,
-    DEAD: 7,
+    IDLE: 0,
+    SITTING: 1,
+    RUNNING: 2,
+    JUMPING: 3,
+    FALLING: 4,
+    ROLLING: 5,
+    DIVING: 6,
+    HIT: 7,
+    DEAD: 8,
+    BITE: 9,
 };
-
 export class State {
     constructor(state, game) {
         this.state = state;
         this.game = game;
+    }
+}
+
+export class Idle extends State {
+    constructor(game) {
+        super('IDLE', game);
+    }
+    enter() {
+        this.game.player.frameX = 0;
+        this.game.player.maxFrame = 6;
+        this.game.player.frameY = 0;
+    }
+    handleInput(input) {
+        if (input.includes('ArrowLeft') || input.includes('ArrowRight')) {
+            this.game.player.setState(states.RUNNING, 1);
+        } else if (input.includes('ArrowUp')) {
+            this.game.player.setState(states.JUMPING, 1);
+        } else if (input.includes('Enter') && this.game.energy > 1) {
+            this.game.player.setState(states.ROLLING, 2);
+        } else if (input.includes('b')) {
+            this.game.player.setState(states.BITE, 1);
+        }
     }
 }
 export class Sitting extends State {
@@ -37,6 +60,8 @@ export class Sitting extends State {
             this.game.player.setState(states.JUMPING, 1);
         } else if (input.includes('Enter') && this.game.energy > 1) {
             this.game.player.setState(states.ROLLING, 2);
+        } else if (input.includes('b')) {
+            this.game.player.setState(states.BITE, 1);
         }
     }
 }
@@ -59,6 +84,8 @@ export class Running extends State {
             this.game.player.setState(states.JUMPING, 1);
         } else if (input.includes('Enter') && this.game.energy > 1) {
             this.game.player.setState(states.ROLLING, 2);
+        } else if (input.includes('b')) {
+            this.game.player.setState(states.BITE, 1);
         }
     }
 }
@@ -81,6 +108,8 @@ export class Jumping extends State {
             this.game.player.setState(states.ROLLING, 2);
         } else if (input.includes('ArrowDown')) {
             this.game.player.setState(states.DIVING, 0);
+        } else if (input.includes('b')) {
+            this.game.player.setState(states.BITE, 1);
         }
     }
 }
@@ -101,6 +130,8 @@ export class Falling extends State {
             this.game.player.setState(states.ROLLING, 2);
         } else if (input.includes('ArrowDown')) {
             this.game.player.setState(states.DIVING, 0);
+        } else if (input.includes('b')) {
+            this.game.player.setState(states.BITE, 1);
         }
     }
 }
@@ -148,7 +179,7 @@ export class Diving extends State {
                 this.game.particles.unshift(new Splash(this.game, this.game.player.x + this.game.player.width * 0.3, this.game.player.y + this.game.player.height));
             }
 
-        } else if (input.includes('Enter') || input.includes('swipe down') && this.game.player.onGround()) {
+        } else if (input.includes('Enter') && this.game.player.onGround()) {
             this.game.player.setState(states.ROLLING, 2);
         }
     }
@@ -186,11 +217,44 @@ export class Dead extends State {
     handleInput(input) {
 
         if (this.game.player.frameX >= 11 && this.game.player.onGround()) {
+            this.game.player.frameX === 11
             this.game.player.setState(states.DEAD, 1);
 
         } else if (this.game.player.frameX >= 11 && !this.game.player.onGround()) {
-            this.game.player.setState(states.FALLING, 1);
+            this.game.player.frameX === 11
             this.game.player.setState(states.DEAD, 1);
+        }
+    }
+}
+
+export class Bite extends State {
+    constructor(game) {
+        super('BITE', game);
+        this.biteTriggered = false;
+    }
+
+    enter() {
+        this.game.player.frameX = 0;
+        this.game.player.maxFrame = 6;
+        this.game.player.frameY = 7;
+    }
+
+    handleInput(input) {
+        if (input.includes('b')) {
+            if (!this.biteTriggered) {
+                if (this.game.player.onGround) {
+                    this.game.player.setState(states.BITE, 2);
+                }
+                this.biteTriggered = true;
+            }
+        } else {
+            this.biteTriggered = false;
+        }
+
+        if (!input.includes('b') && this.game.player.onGround) {
+            this.game.player.setState(states.RUNNING, 1);
+        } else if (!input.includes('b') && !this.game.player.onGround()) {
+            this.game.player.setState(states.FALLING, 1);
         }
     }
 }

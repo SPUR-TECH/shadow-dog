@@ -2,6 +2,7 @@ import {
     states
 } from './playerStates.js';
 import {
+    Idle,
     Sitting,
     Running,
     Jumping,
@@ -9,7 +10,8 @@ import {
     Rolling,
     Diving,
     Hit,
-    Dead
+    Dead,
+    Bite,
 } from './playerStates.js';
 import {
     DiveAnimation
@@ -22,6 +24,10 @@ Howler.volume(1)
 const audio = {
     hit: new Howl({
         src: './sounds/splat.mp3',
+        loop: false
+    }),
+    bite: new Howl({
+        src: './sounds/chomp.mp3',
         loop: false
     }),
     yelp: new Howl({
@@ -47,7 +53,18 @@ export class Player {
         this.frameInterval = 1000 / this.fps;
         this.speed = 0;
         this.maxSpeed = 10;
-        this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game), new Diving(this.game), new Hit(this.game), new Dead(this.game)];
+        this.states = [
+            new Idle(this.game),
+            new Sitting(this.game),
+            new Running(this.game),
+            new Jumping(this.game),
+            new Falling(this.game),
+            new Rolling(this.game),
+            new Diving(this.game),
+            new Hit(this.game),
+            new Dead(this.game),
+            new Bite(this.game)
+        ];
         this.currentState = null;
         this.jumpSound = new Audio();
         this.jumpSound.src = './sounds/boing.mp3';
@@ -63,18 +80,19 @@ export class Player {
             setTimeout(() => {
                 this.setState(states.DEAD, 1);
                 this.game.gameOver = true;
-            }, 700);
+            }, 900);
         } else {
             this.currentState.handleInput(input);
+            console.log('Input in Player:', input);
         }
 
 
         // Horizontal movement
         this.x += this.speed;
 
-        if (input.includes('ArrowRight') && this.currentState !== this.states[6]) {
+        if (input.includes('ArrowRight') && this.currentState !== this.states[7]) {
             this.speed = this.maxSpeed;
-        } else if (input.includes('ArrowLeft') && this.currentState !== this.states[6]) {
+        } else if (input.includes('ArrowLeft') && this.currentState !== this.states[7]) {
             this.speed = -this.maxSpeed;
         } else {
             this.speed = 0;
@@ -156,20 +174,20 @@ export class Player {
 
                 this.game.collisions.push(new DiveAnimation(this.game, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5));
 
-                if (this.currentState === this.states[4] || this.currentState === this.states[5]) {
+                if (this.currentState === this.states[5] || this.currentState === this.states[6] || this.currentState === this.states[9]) {
                     this.game.score += 2;
-                    this.game.floatingMessages.push(new FloatingMessage('+1', enemy.x, enemy.y, 150, 50));
+                    this.game.floatingMessages.push(new FloatingMessage('+2', enemy.x, enemy.y, 150, 50));
+                } else if (this.currentState == this.states[9]) {
+                    audio.bite.play();
                 } else {
-                    this.setState(6, 0);
+                    this.setState(7, 0);
                     this.game.score -= 5;
                     this.game.lives--;
                     audio.yelp.play();
                     if (this.game.lives <= 0) {
-                        this.setState(7, 0);
+                        this.setState(8, 0);
                     }
                 }
-            } else {
-                // No collision
             }
         });
     }
