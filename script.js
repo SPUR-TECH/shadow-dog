@@ -24,6 +24,25 @@ window.addEventListener("load", function () {
 	canvas.width = 1600;
 	canvas.height = 710;
 
+	const audio = {
+		ghost: new Howl({
+			src: "./sounds/ghost.mp3",
+			loop: false,
+		}),
+		bat: new Howl({
+			src: "./sounds/bat.mp3",
+			loop: false,
+		}),
+		raven: new Howl({
+			src: "./sounds/raven.mp3",
+			loop: false,
+		}),
+		spider: new Howl({
+			src: "./sounds/spider.mp3",
+			loop: false,
+		}),
+	};
+
 	class Game {
 		constructor(width, height) {
 			this.width = width;
@@ -40,11 +59,11 @@ window.addEventListener("load", function () {
 			this.onScreenEnemies = [];
 			this.maxParticles = 80;
 			this.enemyTimer = 0;
-			this.enemyInterval = 800;
+			this.enemyInterval = 500;
 			this.speed = 0;
 			this.maxSpeed = 6;
 			this.score = 0;
-			this.winningScore = 60;
+			this.winningScore = 59;
 			this.energy = 0;
 			this.maxEnergy = 10;
 			this.energyIncreaseTimer = 0;
@@ -63,15 +82,6 @@ window.addEventListener("load", function () {
 			this.backgroundSound.src = "./sounds/background.mp3";
 			this.backgroundSound2 = new Audio();
 			this.backgroundSound2.src = "./sounds/background2.mp3";
-			this.spiderSound = new Audio();
-			this.spiderSound.src = "./sounds/spider.mp3";
-			this.ravenSound = new Audio();
-			this.ravenSound.src = "./sounds/raven.mp3";
-			this.batSound = new Audio();
-			this.batSound.src = "./sounds/bat.mp3";
-			this.ghostSound = new Audio();
-			this.ghostSound.src = "./sounds/ghost.mp3";
-			this.gameStarted = false;
 		}
 
 		resetGame() {
@@ -81,7 +91,6 @@ window.addEventListener("load", function () {
 			this.time = 0;
 			this.energy = 0;
 			this.lives = 5;
-
 			this.groundMargin = 70;
 			this.background = new Background(this);
 			this.player = new Player(this);
@@ -98,10 +107,8 @@ window.addEventListener("load", function () {
 			this.speed = 0;
 			this.maxSpeed = 6;
 			this.energyIncreaseTimer = 0;
-
 			this.player.currentState = this.player.states[0];
 			this.player.currentState.enter();
-
 			this.input = new InputHandler(this);
 			this.UI = new UI(this);
 
@@ -219,19 +226,27 @@ window.addEventListener("load", function () {
 		}
 
 		addEnemy() {
-			this.enemies.unshift(new GhostEnemy3(this));
-			this.onScreenEnemies.push(this.enemies[0]);
-			this.ghostSound.play();
+			const randomValue = Math.random();
+
+			if (randomValue < 0.5) {
+				this.enemies.unshift(new GhostEnemy3(this));
+				this.onScreenEnemies.push(this.enemies[0]);
+				audio.ghost.play();
+			} else if (randomValue < 0.75) {
+				this.enemies.unshift(new BatEnemy(this));
+				this.onScreenEnemies.push(this.enemies[0]);
+				audio.bat.play();
+			} else if (randomValue < 0.95) {
+				this.enemies.unshift(new RavenEnemy(this));
+				this.onScreenEnemies.push(this.enemies[0]);
+				audio.raven.play();
+			}
+
 			if (this.speed > 0) {
-				const randomValue = Math.random();
 				if (randomValue < 0.25) {
 					this.enemies.unshift(new GroundZombie(this));
 					this.onScreenEnemies.push(this.enemies[0]);
 					this.diggingZombieSound.play();
-				} else if (randomValue < 0.35) {
-					this.enemies.unshift(new GhostEnemy3(this));
-					this.onScreenEnemies.push(this.enemies[0]);
-					this.ghostSound.play();
 				} else if (randomValue < 0.5) {
 					this.enemies.unshift(new WalkingZombie(this));
 					this.onScreenEnemies.push(this.enemies[0]);
@@ -239,15 +254,7 @@ window.addEventListener("load", function () {
 				} else if (randomValue < 0.75) {
 					this.enemies.unshift(new ClimbingEnemy(this));
 					this.onScreenEnemies.push(this.enemies[0]);
-					this.spiderSound.play();
-				} else if (randomValue < 0.85) {
-					this.enemies.unshift(new BatEnemy(this));
-					this.onScreenEnemies.push(this.enemies[0]);
-					this.batSound.play();
-				} else if (randomValue < 0.95) {
-					this.enemies.unshift(new RavenEnemy(this));
-					this.onScreenEnemies.push(this.enemies[0]);
-					this.ravenSound.play();
+					audio.spider.play();
 				}
 			}
 		}
