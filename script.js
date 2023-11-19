@@ -250,7 +250,7 @@ window.addEventListener("load", function () {
 					this.enemies.unshift(new GroundZombie(this));
 					this.onScreenEnemies.push(this.enemies[0]);
 					this.diggingZombieSound.play();
-				} else if (randomValue < 0.55) {
+				} else if (randomValue < 0.65) {
 					this.enemies.unshift(new WalkingZombie(this));
 					this.onScreenEnemies.push(this.enemies[0]);
 					this.zombieSound.play();
