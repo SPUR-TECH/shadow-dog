@@ -55,7 +55,6 @@ export class BatEnemy extends Enemy {
 		this.image = document.getElementById("bat-3");
 		this.angle = 0;
 		this.va = Math.random() * 0.2 + 0.3;
-		this.game.enemyInterval = Math.random() + 2;
 	}
 	update(deltaTime) {
 		super.update(deltaTime);
@@ -89,7 +88,6 @@ export class GhostEnemy3 extends Enemy {
 		ctx.globalAlpha = 0.5;
 		super.draw(ctx);
 		ctx.globalAlpha = 1;
-		this.game.enemyInterval = 4000;
 	}
 }
 
@@ -107,7 +105,6 @@ export class RavenEnemy extends Enemy {
 		this.image = document.getElementById("raven");
 		this.angle = 0;
 		this.va = Math.random() * 0.1 + 0.1;
-		this.game.enemyInterval = Math.random() + 2;
 	}
 	update(deltaTime) {
 		super.update(deltaTime);

@@ -228,33 +228,32 @@ window.addEventListener("load", function () {
 		addEnemy() {
 			const randomValue = Math.random();
 
-			if (randomValue < 0.5) {
-				this.enemies.unshift(new GhostEnemy3(this));
-				this.onScreenEnemies.push(this.enemies[0]);
-				audio.ghost.play();
-			} else if (randomValue < 0.75) {
+			if (randomValue < 0.25) {
 				this.enemies.unshift(new BatEnemy(this));
 				this.onScreenEnemies.push(this.enemies[0]);
 				audio.bat.play();
-			} else if (randomValue < 0.95) {
+			} else if (randomValue < 0.35) {
 				this.enemies.unshift(new RavenEnemy(this));
 				this.onScreenEnemies.push(this.enemies[0]);
 				audio.raven.play();
+			} else if (randomValue < 0.45) {
+				this.enemies.unshift(new GhostEnemy3(this));
+				this.onScreenEnemies.push(this.enemies[0]);
+				audio.ghost.play();
 			}
-
 			if (this.speed > 0) {
-				if (randomValue < 0.25) {
-					this.enemies.unshift(new GroundZombie(this));
-					this.onScreenEnemies.push(this.enemies[0]);
-					this.diggingZombieSound.play();
-				} else if (randomValue < 0.5) {
-					this.enemies.unshift(new WalkingZombie(this));
-					this.onScreenEnemies.push(this.enemies[0]);
-					this.zombieSound.play();
-				} else if (randomValue < 0.75) {
+				if (randomValue < 0.15) {
 					this.enemies.unshift(new ClimbingEnemy(this));
 					this.onScreenEnemies.push(this.enemies[0]);
 					audio.spider.play();
+				} else if (randomValue < 0.45) {
+					this.enemies.unshift(new GroundZombie(this));
+					this.onScreenEnemies.push(this.enemies[0]);
+					this.diggingZombieSound.play();
+				} else if (randomValue < 0.55) {
+					this.enemies.unshift(new WalkingZombie(this));
+					this.onScreenEnemies.push(this.enemies[0]);
+					this.zombieSound.play();
 				}
 			}
 		}
