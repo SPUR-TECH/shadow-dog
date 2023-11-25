@@ -34,7 +34,36 @@ export class UI {
 		}
 
 		// Game over message
-		if (this.game.gameOver) {
+		if (this.game.gameOver && this.game.lives < 1) {
+			context.textAlign = "center";
+			context.font = this.fontSize * 6 + "px " + this.fontFamily;
+			context.fillStyle = "black";
+			context.fillText(
+				"You Died !!",
+				this.game.width * 0.5,
+				this.game.height * 0.5 - 22,
+			);
+			context.fillStyle = "red";
+			context.fillText(
+				"You Died !!",
+				this.game.width * 0.5 + 8,
+				this.game.height * 0.5 - 16,
+			);
+			context.font = this.fontSize * 1.5 + "px " + this.fontFamily;
+			context.fillStyle = "red";
+			context.fillText(
+				"Try Again !!",
+				this.game.width * 0.5,
+				this.game.height * 0.5 + 130,
+			);
+			context.fillStyle = "yellow";
+			context.fillText(
+				"Try Again !!",
+				this.game.width * 0.5 + 4,
+				this.game.height * 0.5 + 134,
+			);
+		}
+		if (this.game.gameOver && this.game.lives > 0) {
 			context.textAlign = "center";
 			context.font = this.fontSize * 6 + "px " + this.fontFamily;
 
