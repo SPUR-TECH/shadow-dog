@@ -163,7 +163,7 @@ export class Rolling extends State {
 				this.game.player.y + this.game.player.height * 0.5,
 			),
 		);
-		if (!input.includes("Enter") && this.game.player.onGround) {
+		if (!input.includes("Enter") && this.game.player.onGround()) {
 			this.game.player.setState(states.RUNNING, 1);
 		} else if (!input.includes("Enter") && !this.game.player.onGround()) {
 			this.game.player.setState(states.FALLING, 1);
@@ -266,6 +266,7 @@ export class Bite extends State {
 	constructor(game) {
 		super("BITE", game);
 		this.biteTriggered = false;
+		this.biteInProgress = false;
 	}
 
 	enter() {
@@ -276,9 +277,10 @@ export class Bite extends State {
 
 	handleInput(input) {
 		if (input.includes("b")) {
-			if (!this.biteTriggered) {
-				if (this.game.player.onGround) {
+			if (!this.biteTriggered && !this.biteInProgress) {
+				if (this.game.player.onGround()) {
 					this.game.player.setState(states.BITE, 1);
+					this.biteInProgress = true;
 				}
 				this.biteTriggered = true;
 			}
@@ -286,10 +288,23 @@ export class Bite extends State {
 			this.biteTriggered = false;
 		}
 
-		if (!input.includes("b") && this.game.player.onGround) {
+		if (!input.includes("b") && this.game.player.onGround()) {
 			this.game.player.setState(states.RUNNING, 1);
 		} else if (!input.includes("b") && !this.game.player.onGround()) {
 			this.game.player.setState(states.FALLING, 1);
+		}
+	}
+
+	update(deltaTime) {
+		super.update(deltaTime);
+
+		// Check if the bite animation is complete
+		if (
+			this.biteInProgress &&
+			this.game.player.frameX >= this.game.player.maxFrame
+		) {
+			this.biteInProgress = false;
+			this.biteTriggered = false; // Reset the trigger after the animation is complete
 		}
 	}
 }

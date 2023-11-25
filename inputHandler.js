@@ -27,8 +27,13 @@ export class InputHandler {
 					this.keys.push(key);
 					if (key === "Enter") {
 						this.rollButtonPressed = true;
-					} else if (key === "b") {
+					} else if (
+						key === "b" &&
+						!this.game.player.isBiting &&
+						!this.game.player.isBiteInProgress
+					) {
 						audio.bite.play();
+						this.game.player.isBiteInProgress = true; // Set the flag
 						this.game.player.setState(states.BITE, 1);
 					}
 				});
@@ -36,15 +41,17 @@ export class InputHandler {
 				this.keys.push(keys);
 				if (keys === "Enter") {
 					this.rollButtonPressed = true;
+				} else if (
+					keys === "b" &&
+					!this.game.player.isBiting &&
+					!this.game.player.isBiteInProgress
+				) {
+					audio.bite.play();
+					this.game.player.isBiteInProgress = true; // Set the flag
+					this.game.player.setState(states.BITE, 1);
 				}
 			}
 		};
-
-		document.addEventListener("keydown", (event) => {
-			if (event.key.toLowerCase() === "b") {
-				audio.bite.play(); // Assuming "bite" is the key for the "chomp" sound
-			}
-		});
 
 		const handleTouchEnd = (keys) => {
 			if (Array.isArray(keys)) {
@@ -52,15 +59,25 @@ export class InputHandler {
 					this.keys.splice(this.keys.indexOf(key), 1);
 					if (key === "Enter") {
 						this.rollButtonPressed = false;
+					} else if (key === "b") {
+						this.game.player.isBiteInProgress = false; // Reset the flag on touch end
 					}
 				});
 			} else {
 				this.keys.splice(this.keys.indexOf(keys), 1);
 				if (keys === "Enter") {
 					this.rollButtonPressed = false;
+				} else if (keys === "b") {
+					this.game.player.isBiteInProgress = false; // Reset the flag on touch end
 				}
 			}
 		};
+
+		document.addEventListener("keydown", (event) => {
+			if (event.key.toLowerCase() === "b") {
+				audio.bite.play();
+			}
+		});
 
 		document.querySelector("#startButton").addEventListener("click", () => {
 			if (!this.game.gameStarted) {
