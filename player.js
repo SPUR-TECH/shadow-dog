@@ -180,7 +180,7 @@ export class Player {
 					this.currentState === this.states[6] ||
 					this.currentState === this.states[9]
 				) {
-					this.game.score += 1;
+					this.game.score += 2;
 					this.game.floatingMessages.push(
 						new FloatingMessage("+1", enemy.x, enemy.y, 150, 50),
 					);
